@@ -6,6 +6,8 @@ import pickle
 from config import *
 from nltk import word_tokenize
 
+# TODO: twitter tokenizer
+
 def load_data(filename, dir_path=data_path):
     target_file = os.path.join(dir_path, "processed_"+filename)
     if os.path.isfile(target_file):
