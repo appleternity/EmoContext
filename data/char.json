@@ -1,0 +1,4567 @@
+{
+    "0": {
+        "index": 0,
+        "code": 128512,
+        "character": "\ud83d\ude00"
+    },
+    "1": {
+        "index": 1,
+        "code": 57431,
+        "character": "\ue057"
+    },
+    "2": {
+        "index": 2,
+        "code": 58389,
+        "character": "\ue415"
+    },
+    "3": {
+        "index": 3,
+        "code": 58372,
+        "character": "\ue404"
+    },
+    "4": {
+        "index": 4,
+        "code": 128518,
+        "character": "\ud83d\ude06"
+    },
+    "5": {
+        "index": 5,
+        "code": 128517,
+        "character": "\ud83d\ude05"
+    },
+    "6": {
+        "index": 6,
+        "code": 58386,
+        "character": "\ue412"
+    },
+    "7": {
+        "index": 7,
+        "code": 129315,
+        "character": "\ud83e\udd23"
+    },
+    "8": {
+        "index": 8,
+        "code": 58388,
+        "character": "\ue414"
+    },
+    "9": {
+        "index": 9,
+        "code": 57430,
+        "character": "\ue056"
+    },
+    "10": {
+        "index": 10,
+        "code": 128519,
+        "character": "\ud83d\ude07"
+    },
+    "11": {
+        "index": 11,
+        "code": 128578,
+        "character": "\ud83d\ude42"
+    },
+    "12": {
+        "index": 12,
+        "code": 128579,
+        "character": "\ud83d\ude43"
+    },
+    "13": {
+        "index": 13,
+        "code": 58373,
+        "character": "\ue405"
+    },
+    "14": {
+        "index": 14,
+        "code": 58378,
+        "character": "\ue40a"
+    },
+    "15": {
+        "index": 15,
+        "code": 57606,
+        "character": "\ue106"
+    },
+    "16": {
+        "index": 16,
+        "code": 129392,
+        "character": "\ud83e\udd70"
+    },
+    "17": {
+        "index": 17,
+        "code": 58392,
+        "character": "\ue418"
+    },
+    "18": {
+        "index": 18,
+        "code": 128535,
+        "character": "\ud83d\ude17"
+    },
+    "19": {
+        "index": 19,
+        "code": 128537,
+        "character": "\ud83d\ude19"
+    },
+    "20": {
+        "index": 20,
+        "code": 58391,
+        "character": "\ue417"
+    },
+    "21": {
+        "index": 21,
+        "code": 128523,
+        "character": "\ud83d\ude0b"
+    },
+    "22": {
+        "index": 22,
+        "code": 128539,
+        "character": "\ud83d\ude1b"
+    },
+    "23": {
+        "index": 23,
+        "code": 58377,
+        "character": "\ue409"
+    },
+    "24": {
+        "index": 24,
+        "code": 57605,
+        "character": "\ue105"
+    },
+    "25": {
+        "index": 25,
+        "code": 129322,
+        "character": "\ud83e\udd2a"
+    },
+    "26": {
+        "index": 26,
+        "code": 129320,
+        "character": "\ud83e\udd28"
+    },
+    "27": {
+        "index": 27,
+        "code": 129488,
+        "character": "\ud83e\uddd0"
+    },
+    "28": {
+        "index": 28,
+        "code": 129299,
+        "character": "\ud83e\udd13"
+    },
+    "29": {
+        "index": 29,
+        "code": 128526,
+        "character": "\ud83d\ude0e"
+    },
+    "30": {
+        "index": 30,
+        "code": 129321,
+        "character": "\ud83e\udd29"
+    },
+    "31": {
+        "index": 31,
+        "code": 129395,
+        "character": "\ud83e\udd73"
+    },
+    "32": {
+        "index": 32,
+        "code": 58370,
+        "character": "\ue402"
+    },
+    "33": {
+        "index": 33,
+        "code": 58382,
+        "character": "\ue40e"
+    },
+    "34": {
+        "index": 34,
+        "code": 57432,
+        "character": "\ue058"
+    },
+    "35": {
+        "index": 35,
+        "code": 58371,
+        "character": "\ue403"
+    },
+    "36": {
+        "index": 36,
+        "code": 128543,
+        "character": "\ud83d\ude1f"
+    },
+    "37": {
+        "index": 37,
+        "code": 128533,
+        "character": "\ud83d\ude15"
+    },
+    "38": {
+        "index": 38,
+        "code": 128577,
+        "character": "\ud83d\ude41"
+    },
+    "39": {
+        "index": 39,
+        "code": 65039,
+        "character": "\u2639\ufe0f"
+    },
+    "40": {
+        "index": 40,
+        "code": 58374,
+        "character": "\ue406"
+    },
+    "41": {
+        "index": 41,
+        "code": 58375,
+        "character": "\ue407"
+    },
+    "42": {
+        "index": 42,
+        "code": 128555,
+        "character": "\ud83d\ude2b"
+    },
+    "43": {
+        "index": 43,
+        "code": 128553,
+        "character": "\ud83d\ude29"
+    },
+    "44": {
+        "index": 44,
+        "code": 129402,
+        "character": "\ud83e\udd7a"
+    },
+    "45": {
+        "index": 45,
+        "code": 58387,
+        "character": "\ue413"
+    },
+    "46": {
+        "index": 46,
+        "code": 58385,
+        "character": "\ue411"
+    },
+    "47": {
+        "index": 47,
+        "code": 128548,
+        "character": "\ud83d\ude24"
+    },
+    "48": {
+        "index": 48,
+        "code": 57433,
+        "character": "\ue059"
+    },
+    "49": {
+        "index": 49,
+        "code": 58390,
+        "character": "\ue416"
+    },
+    "50": {
+        "index": 50,
+        "code": 129324,
+        "character": "\ud83e\udd2c"
+    },
+    "51": {
+        "index": 51,
+        "code": 129327,
+        "character": "\ud83e\udd2f"
+    },
+    "52": {
+        "index": 52,
+        "code": 58381,
+        "character": "\ue40d"
+    },
+    "53": {
+        "index": 53,
+        "code": 129397,
+        "character": "\ud83e\udd75"
+    },
+    "54": {
+        "index": 54,
+        "code": 129398,
+        "character": "\ud83e\udd76"
+    },
+    "55": {
+        "index": 55,
+        "code": 57607,
+        "character": "\ue107"
+    },
+    "56": {
+        "index": 56,
+        "code": 58379,
+        "character": "\ue40b"
+    },
+    "57": {
+        "index": 57,
+        "code": 58383,
+        "character": "\ue40f"
+    },
+    "58": {
+        "index": 58,
+        "code": 58369,
+        "character": "\ue401"
+    },
+    "59": {
+        "index": 59,
+        "code": 57608,
+        "character": "\ue108"
+    },
+    "60": {
+        "index": 60,
+        "code": 129303,
+        "character": "\ud83e\udd17"
+    },
+    "61": {
+        "index": 61,
+        "code": 129300,
+        "character": "\ud83e\udd14"
+    },
+    "62": {
+        "index": 62,
+        "code": 129325,
+        "character": "\ud83e\udd2d"
+    },
+    "63": {
+        "index": 63,
+        "code": 129323,
+        "character": "\ud83e\udd2b"
+    },
+    "64": {
+        "index": 64,
+        "code": 129317,
+        "character": "\ud83e\udd25"
+    },
+    "65": {
+        "index": 65,
+        "code": 128566,
+        "character": "\ud83d\ude36"
+    },
+    "66": {
+        "index": 66,
+        "code": 128528,
+        "character": "\ud83d\ude10"
+    },
+    "67": {
+        "index": 67,
+        "code": 128529,
+        "character": "\ud83d\ude11"
+    },
+    "68": {
+        "index": 68,
+        "code": 128556,
+        "character": "\ud83d\ude2c"
+    },
+    "69": {
+        "index": 69,
+        "code": 128580,
+        "character": "\ud83d\ude44"
+    },
+    "70": {
+        "index": 70,
+        "code": 128559,
+        "character": "\ud83d\ude2f"
+    },
+    "71": {
+        "index": 71,
+        "code": 128550,
+        "character": "\ud83d\ude26"
+    },
+    "72": {
+        "index": 72,
+        "code": 128551,
+        "character": "\ud83d\ude27"
+    },
+    "73": {
+        "index": 73,
+        "code": 128558,
+        "character": "\ud83d\ude2e"
+    },
+    "74": {
+        "index": 74,
+        "code": 58384,
+        "character": "\ue410"
+    },
+    "75": {
+        "index": 75,
+        "code": 128564,
+        "character": "\ud83d\ude34"
+    },
+    "76": {
+        "index": 76,
+        "code": 129316,
+        "character": "\ud83e\udd24"
+    },
+    "77": {
+        "index": 77,
+        "code": 58376,
+        "character": "\ue408"
+    },
+    "78": {
+        "index": 78,
+        "code": 128565,
+        "character": "\ud83d\ude35"
+    },
+    "79": {
+        "index": 79,
+        "code": 129296,
+        "character": "\ud83e\udd10"
+    },
+    "80": {
+        "index": 80,
+        "code": 129396,
+        "character": "\ud83e\udd74"
+    },
+    "81": {
+        "index": 81,
+        "code": 129314,
+        "character": "\ud83e\udd22"
+    },
+    "82": {
+        "index": 82,
+        "code": 129326,
+        "character": "\ud83e\udd2e"
+    },
+    "83": {
+        "index": 83,
+        "code": 129319,
+        "character": "\ud83e\udd27"
+    },
+    "84": {
+        "index": 84,
+        "code": 58380,
+        "character": "\ue40c"
+    },
+    "85": {
+        "index": 85,
+        "code": 129298,
+        "character": "\ud83e\udd12"
+    },
+    "86": {
+        "index": 86,
+        "code": 129301,
+        "character": "\ud83e\udd15"
+    },
+    "87": {
+        "index": 87,
+        "code": 129297,
+        "character": "\ud83e\udd11"
+    },
+    "88": {
+        "index": 88,
+        "code": 129312,
+        "character": "\ud83e\udd20"
+    },
+    "89": {
+        "index": 89,
+        "code": 128520,
+        "character": "\ud83d\ude08"
+    },
+    "90": {
+        "index": 90,
+        "code": 57626,
+        "character": "\ue11a"
+    },
+    "91": {
+        "index": 91,
+        "code": 128121,
+        "character": "\ud83d\udc79"
+    },
+    "92": {
+        "index": 92,
+        "code": 128122,
+        "character": "\ud83d\udc7a"
+    },
+    "93": {
+        "index": 93,
+        "code": 129313,
+        "character": "\ud83e\udd21"
+    },
+    "94": {
+        "index": 94,
+        "code": 57434,
+        "character": "\ue05a"
+    },
+    "95": {
+        "index": 95,
+        "code": 57627,
+        "character": "\ue11b"
+    },
+    "96": {
+        "index": 96,
+        "code": 57628,
+        "character": "\ue11c"
+    },
+    "97": {
+        "index": 97,
+        "code": 9760,
+        "character": "\u2620"
+    },
+    "98": {
+        "index": 98,
+        "code": 57612,
+        "character": "\ue10c"
+    },
+    "99": {
+        "index": 99,
+        "code": 57643,
+        "character": "\ue12b"
+    },
+    "100": {
+        "index": 100,
+        "code": 129302,
+        "character": "\ud83e\udd16"
+    },
+    "101": {
+        "index": 101,
+        "code": 58437,
+        "character": "\ue445"
+    },
+    "102": {
+        "index": 102,
+        "code": 128570,
+        "character": "\ud83d\ude3a"
+    },
+    "103": {
+        "index": 103,
+        "code": 128568,
+        "character": "\ud83d\ude38"
+    },
+    "104": {
+        "index": 104,
+        "code": 128569,
+        "character": "\ud83d\ude39"
+    },
+    "105": {
+        "index": 105,
+        "code": 128571,
+        "character": "\ud83d\ude3b"
+    },
+    "106": {
+        "index": 106,
+        "code": 128572,
+        "character": "\ud83d\ude3c"
+    },
+    "107": {
+        "index": 107,
+        "code": 128573,
+        "character": "\ud83d\ude3d"
+    },
+    "108": {
+        "index": 108,
+        "code": 128576,
+        "character": "\ud83d\ude40"
+    },
+    "109": {
+        "index": 109,
+        "code": 128575,
+        "character": "\ud83d\ude3f"
+    },
+    "110": {
+        "index": 110,
+        "code": 128574,
+        "character": "\ud83d\ude3e"
+    },
+    "111": {
+        "index": 111,
+        "code": 129330,
+        "character": "\ud83e\udd32"
+    },
+    "112": {
+        "index": 112,
+        "code": 58402,
+        "character": "\ue422"
+    },
+    "113": {
+        "index": 113,
+        "code": 58407,
+        "character": "\ue427"
+    },
+    "114": {
+        "index": 114,
+        "code": 58399,
+        "character": "\ue41f"
+    },
+    "115": {
+        "index": 115,
+        "code": 129309,
+        "character": "\ud83e\udd1d"
+    },
+    "116": {
+        "index": 116,
+        "code": 57358,
+        "character": "\ue00e"
+    },
+    "117": {
+        "index": 117,
+        "code": 58401,
+        "character": "\ue421"
+    },
+    "118": {
+        "index": 118,
+        "code": 57357,
+        "character": "\ue00d"
+    },
+    "119": {
+        "index": 119,
+        "code": 57360,
+        "character": "\ue010"
+    },
+    "120": {
+        "index": 120,
+        "code": 129307,
+        "character": "\ud83e\udd1b"
+    },
+    "121": {
+        "index": 121,
+        "code": 129308,
+        "character": "\ud83e\udd1c"
+    },
+    "122": {
+        "index": 122,
+        "code": 129310,
+        "character": "\ud83e\udd1e"
+    },
+    "123": {
+        "index": 123,
+        "code": 57361,
+        "character": "\ue011"
+    },
+    "124": {
+        "index": 124,
+        "code": 129311,
+        "character": "\ud83e\udd1f"
+    },
+    "125": {
+        "index": 125,
+        "code": 129304,
+        "character": "\ud83e\udd18"
+    },
+    "126": {
+        "index": 126,
+        "code": 58400,
+        "character": "\ue420"
+    },
+    "127": {
+        "index": 127,
+        "code": 57904,
+        "character": "\ue230"
+    },
+    "128": {
+        "index": 128,
+        "code": 57905,
+        "character": "\ue231"
+    },
+    "129": {
+        "index": 129,
+        "code": 57902,
+        "character": "\ue22e"
+    },
+    "130": {
+        "index": 130,
+        "code": 57903,
+        "character": "\ue22f"
+    },
+    "131": {
+        "index": 131,
+        "code": 57359,
+        "character": "\ue00f"
+    },
+    "132": {
+        "index": 132,
+        "code": 57362,
+        "character": "\ue012"
+    },
+    "133": {
+        "index": 133,
+        "code": 129306,
+        "character": "\ud83e\udd1a"
+    },
+    "134": {
+        "index": 134,
+        "code": 128400,
+        "character": "\ud83d\udd90"
+    },
+    "135": {
+        "index": 135,
+        "code": 128406,
+        "character": "\ud83d\udd96"
+    },
+    "136": {
+        "index": 136,
+        "code": 58398,
+        "character": "\ue41e"
+    },
+    "137": {
+        "index": 137,
+        "code": 129305,
+        "character": "\ud83e\udd19"
+    },
+    "138": {
+        "index": 138,
+        "code": 57676,
+        "character": "\ue14c"
+    },
+    "139": {
+        "index": 139,
+        "code": 128405,
+        "character": "\ud83d\udd95"
+    },
+    "140": {
+        "index": 140,
+        "code": 9997,
+        "character": "\u270d"
+    },
+    "141": {
+        "index": 141,
+        "code": 58397,
+        "character": "\ue41d"
+    },
+    "142": {
+        "index": 142,
+        "code": 129462,
+        "character": "\ud83e\uddb6"
+    },
+    "143": {
+        "index": 143,
+        "code": 129461,
+        "character": "\ud83e\uddb5"
+    },
+    "144": {
+        "index": 144,
+        "code": 58140,
+        "character": "\ue31c"
+    },
+    "145": {
+        "index": 145,
+        "code": 57347,
+        "character": "\ue003"
+    },
+    "146": {
+        "index": 146,
+        "code": 58396,
+        "character": "\ue41c"
+    },
+    "147": {
+        "index": 147,
+        "code": 129463,
+        "character": "\ud83e\uddb7"
+    },
+    "148": {
+        "index": 148,
+        "code": 128069,
+        "character": "\ud83d\udc45"
+    },
+    "149": {
+        "index": 149,
+        "code": 58395,
+        "character": "\ue41b"
+    },
+    "150": {
+        "index": 150,
+        "code": 58394,
+        "character": "\ue41a"
+    },
+    "151": {
+        "index": 151,
+        "code": 58678,
+        "character": "\ue536"
+    },
+    "152": {
+        "index": 152,
+        "code": 128065,
+        "character": "\ud83d\udc41"
+    },
+    "153": {
+        "index": 153,
+        "code": 58393,
+        "character": "\ue419"
+    },
+    "154": {
+        "index": 154,
+        "code": 129504,
+        "character": "\ud83e\udde0"
+    },
+    "155": {
+        "index": 155,
+        "code": 128483,
+        "character": "\ud83d\udde3"
+    },
+    "156": {
+        "index": 156,
+        "code": 128100,
+        "character": "\ud83d\udc64"
+    },
+    "157": {
+        "index": 157,
+        "code": 128101,
+        "character": "\ud83d\udc65"
+    },
+    "158": {
+        "index": 158,
+        "code": 58650,
+        "character": "\ue51a"
+    },
+    "159": {
+        "index": 159,
+        "code": 57346,
+        "character": "\ue002"
+    },
+    "160": {
+        "index": 160,
+        "code": 129490,
+        "character": "\ud83e\uddd2"
+    },
+    "161": {
+        "index": 161,
+        "code": 57345,
+        "character": "\ue001"
+    },
+    "162": {
+        "index": 162,
+        "code": 57349,
+        "character": "\ue005"
+    },
+    "163": {
+        "index": 163,
+        "code": 129489,
+        "character": "\ud83e\uddd1"
+    },
+    "164": {
+        "index": 164,
+        "code": 57348,
+        "character": "\ue004"
+    },
+    "165": {
+        "index": 165,
+        "code": 129457,
+        "character": "\ud83d\udc69\u200d\ud83e\uddb1"
+    },
+    "166": {
+        "index": 166,
+        "code": 129457,
+        "character": "\ud83d\udc68\u200d\ud83e\uddb1"
+    },
+    "167": {
+        "index": 167,
+        "code": 129456,
+        "character": "\ud83d\udc69\u200d\ud83e\uddb0"
+    },
+    "168": {
+        "index": 168,
+        "code": 129456,
+        "character": "\ud83d\udc68\u200d\ud83e\uddb0"
+    },
+    "169": {
+        "index": 169,
+        "code": 65039,
+        "character": "\ud83d\udc71\u200d\u2640\ufe0f"
+    },
+    "170": {
+        "index": 170,
+        "code": 58645,
+        "character": "\ue515"
+    },
+    "171": {
+        "index": 171,
+        "code": 129459,
+        "character": "\ud83d\udc69\u200d\ud83e\uddb3"
+    },
+    "172": {
+        "index": 172,
+        "code": 129459,
+        "character": "\ud83d\udc68\u200d\ud83e\uddb3"
+    },
+    "173": {
+        "index": 173,
+        "code": 129458,
+        "character": "\ud83d\udc69\u200d\ud83e\uddb2"
+    },
+    "174": {
+        "index": 174,
+        "code": 129458,
+        "character": "\ud83d\udc68\u200d\ud83e\uddb2"
+    },
+    "175": {
+        "index": 175,
+        "code": 129492,
+        "character": "\ud83e\uddd4"
+    },
+    "176": {
+        "index": 176,
+        "code": 58649,
+        "character": "\ue519"
+    },
+    "177": {
+        "index": 177,
+        "code": 129491,
+        "character": "\ud83e\uddd3"
+    },
+    "178": {
+        "index": 178,
+        "code": 58648,
+        "character": "\ue518"
+    },
+    "179": {
+        "index": 179,
+        "code": 58646,
+        "character": "\ue516"
+    },
+    "180": {
+        "index": 180,
+        "code": 65039,
+        "character": "\ud83d\udc73\u200d\u2640\ufe0f"
+    },
+    "181": {
+        "index": 181,
+        "code": 58647,
+        "character": "\ue517"
+    },
+    "182": {
+        "index": 182,
+        "code": 129493,
+        "character": "\ud83e\uddd5"
+    },
+    "183": {
+        "index": 183,
+        "code": 65039,
+        "character": "\ud83d\udc6e\u200d\u2640\ufe0f"
+    },
+    "184": {
+        "index": 184,
+        "code": 57682,
+        "character": "\ue152"
+    },
+    "185": {
+        "index": 185,
+        "code": 65039,
+        "character": "\ud83d\udc77\u200d\u2640\ufe0f"
+    },
+    "186": {
+        "index": 186,
+        "code": 58651,
+        "character": "\ue51b"
+    },
+    "187": {
+        "index": 187,
+        "code": 65039,
+        "character": "\ud83d\udc82\u200d\u2640\ufe0f"
+    },
+    "188": {
+        "index": 188,
+        "code": 58654,
+        "character": "\ue51e"
+    },
+    "189": {
+        "index": 189,
+        "code": 65039,
+        "character": "\ud83d\udd75\ufe0f\u200d\u2640\ufe0f"
+    },
+    "190": {
+        "index": 190,
+        "code": 128373,
+        "character": "\ud83d\udd75"
+    },
+    "191": {
+        "index": 191,
+        "code": 65039,
+        "character": "\ud83d\udc69\u200d\u2695\ufe0f"
+    },
+    "192": {
+        "index": 192,
+        "code": 65039,
+        "character": "\ud83d\udc68\u200d\u2695\ufe0f"
+    },
+    "193": {
+        "index": 193,
+        "code": 127806,
+        "character": "\ud83d\udc69\u200d\ud83c\udf3e"
+    },
+    "194": {
+        "index": 194,
+        "code": 127806,
+        "character": "\ud83d\udc68\u200d\ud83c\udf3e"
+    },
+    "195": {
+        "index": 195,
+        "code": 127859,
+        "character": "\ud83d\udc69\u200d\ud83c\udf73"
+    },
+    "196": {
+        "index": 196,
+        "code": 127859,
+        "character": "\ud83d\udc68\u200d\ud83c\udf73"
+    },
+    "197": {
+        "index": 197,
+        "code": 127891,
+        "character": "\ud83d\udc69\u200d\ud83c\udf93"
+    },
+    "198": {
+        "index": 198,
+        "code": 127891,
+        "character": "\ud83d\udc68\u200d\ud83c\udf93"
+    },
+    "199": {
+        "index": 199,
+        "code": 127908,
+        "character": "\ud83d\udc69\u200d\ud83c\udfa4"
+    },
+    "200": {
+        "index": 200,
+        "code": 127908,
+        "character": "\ud83d\udc68\u200d\ud83c\udfa4"
+    },
+    "201": {
+        "index": 201,
+        "code": 127979,
+        "character": "\ud83d\udc69\u200d\ud83c\udfeb"
+    },
+    "202": {
+        "index": 202,
+        "code": 127979,
+        "character": "\ud83d\udc68\u200d\ud83c\udfeb"
+    },
+    "203": {
+        "index": 203,
+        "code": 127981,
+        "character": "\ud83d\udc69\u200d\ud83c\udfed"
+    },
+    "204": {
+        "index": 204,
+        "code": 127981,
+        "character": "\ud83d\udc68\u200d\ud83c\udfed"
+    },
+    "205": {
+        "index": 205,
+        "code": 128187,
+        "character": "\ud83d\udc69\u200d\ud83d\udcbb"
+    },
+    "206": {
+        "index": 206,
+        "code": 128187,
+        "character": "\ud83d\udc68\u200d\ud83d\udcbb"
+    },
+    "207": {
+        "index": 207,
+        "code": 128188,
+        "character": "\ud83d\udc69\u200d\ud83d\udcbc"
+    },
+    "208": {
+        "index": 208,
+        "code": 128188,
+        "character": "\ud83d\udc68\u200d\ud83d\udcbc"
+    },
+    "209": {
+        "index": 209,
+        "code": 128295,
+        "character": "\ud83d\udc69\u200d\ud83d\udd27"
+    },
+    "210": {
+        "index": 210,
+        "code": 128295,
+        "character": "\ud83d\udc68\u200d\ud83d\udd27"
+    },
+    "211": {
+        "index": 211,
+        "code": 128300,
+        "character": "\ud83d\udc69\u200d\ud83d\udd2c"
+    },
+    "212": {
+        "index": 212,
+        "code": 128300,
+        "character": "\ud83d\udc68\u200d\ud83d\udd2c"
+    },
+    "213": {
+        "index": 213,
+        "code": 127912,
+        "character": "\ud83d\udc69\u200d\ud83c\udfa8"
+    },
+    "214": {
+        "index": 214,
+        "code": 127912,
+        "character": "\ud83d\udc68\u200d\ud83c\udfa8"
+    },
+    "215": {
+        "index": 215,
+        "code": 128658,
+        "character": "\ud83d\udc69\u200d\ud83d\ude92"
+    },
+    "216": {
+        "index": 216,
+        "code": 128658,
+        "character": "\ud83d\udc68\u200d\ud83d\ude92"
+    },
+    "217": {
+        "index": 217,
+        "code": 65039,
+        "character": "\ud83d\udc69\u200d\u2708\ufe0f"
+    },
+    "218": {
+        "index": 218,
+        "code": 65039,
+        "character": "\ud83d\udc68\u200d\u2708\ufe0f"
+    },
+    "219": {
+        "index": 219,
+        "code": 128640,
+        "character": "\ud83d\udc69\u200d\ud83d\ude80"
+    },
+    "220": {
+        "index": 220,
+        "code": 128640,
+        "character": "\ud83d\udc68\u200d\ud83d\ude80"
+    },
+    "221": {
+        "index": 221,
+        "code": 65039,
+        "character": "\ud83d\udc69\u200d\u2696\ufe0f"
+    },
+    "222": {
+        "index": 222,
+        "code": 65039,
+        "character": "\ud83d\udc68\u200d\u2696\ufe0f"
+    },
+    "223": {
+        "index": 223,
+        "code": 128112,
+        "character": "\ud83d\udc70"
+    },
+    "224": {
+        "index": 224,
+        "code": 129333,
+        "character": "\ud83e\udd35"
+    },
+    "225": {
+        "index": 225,
+        "code": 58652,
+        "character": "\ue51c"
+    },
+    "226": {
+        "index": 226,
+        "code": 129332,
+        "character": "\ud83e\udd34"
+    },
+    "227": {
+        "index": 227,
+        "code": 65039,
+        "character": "\ud83e\uddb8\u200d\u2640\ufe0f"
+    },
+    "228": {
+        "index": 228,
+        "code": 65039,
+        "character": "\ud83e\uddb8\u200d\u2642\ufe0f"
+    },
+    "229": {
+        "index": 229,
+        "code": 65039,
+        "character": "\ud83e\uddb9\u200d\u2640\ufe0f"
+    },
+    "230": {
+        "index": 230,
+        "code": 65039,
+        "character": "\ud83e\uddb9\u200d\u2642\ufe0f"
+    },
+    "231": {
+        "index": 231,
+        "code": 129334,
+        "character": "\ud83e\udd36"
+    },
+    "232": {
+        "index": 232,
+        "code": 58440,
+        "character": "\ue448"
+    },
+    "233": {
+        "index": 233,
+        "code": 65039,
+        "character": "\ud83e\uddd9\u200d\u2640\ufe0f"
+    },
+    "234": {
+        "index": 234,
+        "code": 65039,
+        "character": "\ud83e\uddd9\u200d\u2642\ufe0f"
+    },
+    "235": {
+        "index": 235,
+        "code": 65039,
+        "character": "\ud83e\udddd\u200d\u2640\ufe0f"
+    },
+    "236": {
+        "index": 236,
+        "code": 65039,
+        "character": "\ud83e\udddd\u200d\u2642\ufe0f"
+    },
+    "237": {
+        "index": 237,
+        "code": 65039,
+        "character": "\ud83e\udddb\u200d\u2640\ufe0f"
+    },
+    "238": {
+        "index": 238,
+        "code": 65039,
+        "character": "\ud83e\udddb\u200d\u2642\ufe0f"
+    },
+    "239": {
+        "index": 239,
+        "code": 65039,
+        "character": "\ud83e\udddf\u200d\u2640\ufe0f"
+    },
+    "240": {
+        "index": 240,
+        "code": 65039,
+        "character": "\ud83e\udddf\u200d\u2642\ufe0f"
+    },
+    "241": {
+        "index": 241,
+        "code": 65039,
+        "character": "\ud83e\uddde\u200d\u2640\ufe0f"
+    },
+    "242": {
+        "index": 242,
+        "code": 65039,
+        "character": "\ud83e\uddde\u200d\u2642\ufe0f"
+    },
+    "243": {
+        "index": 243,
+        "code": 65039,
+        "character": "\ud83e\udddc\u200d\u2640\ufe0f"
+    },
+    "244": {
+        "index": 244,
+        "code": 65039,
+        "character": "\ud83e\udddc\u200d\u2642\ufe0f"
+    },
+    "245": {
+        "index": 245,
+        "code": 65039,
+        "character": "\ud83e\uddda\u200d\u2640\ufe0f"
+    },
+    "246": {
+        "index": 246,
+        "code": 65039,
+        "character": "\ud83e\uddda\u200d\u2642\ufe0f"
+    },
+    "247": {
+        "index": 247,
+        "code": 57422,
+        "character": "\ue04e"
+    },
+    "248": {
+        "index": 248,
+        "code": 129328,
+        "character": "\ud83e\udd30"
+    },
+    "249": {
+        "index": 249,
+        "code": 129329,
+        "character": "\ud83e\udd31"
+    },
+    "250": {
+        "index": 250,
+        "code": 65039,
+        "character": "\ud83d\ude47\u200d\u2640\ufe0f"
+    },
+    "251": {
+        "index": 251,
+        "code": 58406,
+        "character": "\ue426"
+    },
+    "252": {
+        "index": 252,
+        "code": 57939,
+        "character": "\ue253"
+    },
+    "253": {
+        "index": 253,
+        "code": 65039,
+        "character": "\ud83d\udc81\u200d\u2642\ufe0f"
+    },
+    "254": {
+        "index": 254,
+        "code": 58403,
+        "character": "\ue423"
+    },
+    "255": {
+        "index": 255,
+        "code": 65039,
+        "character": "\ud83d\ude45\u200d\u2642\ufe0f"
+    },
+    "256": {
+        "index": 256,
+        "code": 58404,
+        "character": "\ue424"
+    },
+    "257": {
+        "index": 257,
+        "code": 65039,
+        "character": "\ud83d\ude46\u200d\u2642\ufe0f"
+    },
+    "258": {
+        "index": 258,
+        "code": 128587,
+        "character": "\ud83d\ude4b"
+    },
+    "259": {
+        "index": 259,
+        "code": 65039,
+        "character": "\ud83d\ude4b\u200d\u2642\ufe0f"
+    },
+    "260": {
+        "index": 260,
+        "code": 65039,
+        "character": "\ud83e\udd26\u200d\u2640\ufe0f"
+    },
+    "261": {
+        "index": 261,
+        "code": 65039,
+        "character": "\ud83e\udd26\u200d\u2642\ufe0f"
+    },
+    "262": {
+        "index": 262,
+        "code": 65039,
+        "character": "\ud83e\udd37\u200d\u2640\ufe0f"
+    },
+    "263": {
+        "index": 263,
+        "code": 65039,
+        "character": "\ud83e\udd37\u200d\u2642\ufe0f"
+    },
+    "264": {
+        "index": 264,
+        "code": 128590,
+        "character": "\ud83d\ude4e"
+    },
+    "265": {
+        "index": 265,
+        "code": 65039,
+        "character": "\ud83d\ude4e\u200d\u2642\ufe0f"
+    },
+    "266": {
+        "index": 266,
+        "code": 128589,
+        "character": "\ud83d\ude4d"
+    },
+    "267": {
+        "index": 267,
+        "code": 65039,
+        "character": "\ud83d\ude4d\u200d\u2642\ufe0f"
+    },
+    "268": {
+        "index": 268,
+        "code": 58143,
+        "character": "\ue31f"
+    },
+    "269": {
+        "index": 269,
+        "code": 65039,
+        "character": "\ud83d\udc87\u200d\u2642\ufe0f"
+    },
+    "270": {
+        "index": 270,
+        "code": 58142,
+        "character": "\ue31e"
+    },
+    "271": {
+        "index": 271,
+        "code": 65039,
+        "character": "\ud83d\udc86\u200d\u2642\ufe0f"
+    },
+    "272": {
+        "index": 272,
+        "code": 65039,
+        "character": "\ud83e\uddd6\u200d\u2640\ufe0f"
+    },
+    "273": {
+        "index": 273,
+        "code": 65039,
+        "character": "\ud83e\uddd6\u200d\u2642\ufe0f"
+    },
+    "274": {
+        "index": 274,
+        "code": 58141,
+        "character": "\ue31d"
+    },
+    "275": {
+        "index": 275,
+        "code": 129331,
+        "character": "\ud83e\udd33"
+    },
+    "276": {
+        "index": 276,
+        "code": 58655,
+        "character": "\ue51f"
+    },
+    "277": {
+        "index": 277,
+        "code": 128378,
+        "character": "\ud83d\udd7a"
+    },
+    "278": {
+        "index": 278,
+        "code": 58409,
+        "character": "\ue429"
+    },
+    "279": {
+        "index": 279,
+        "code": 65039,
+        "character": "\ud83d\udc6f\u200d\u2642\ufe0f"
+    },
+    "280": {
+        "index": 280,
+        "code": 128372,
+        "character": "\ud83d\udd74"
+    },
+    "281": {
+        "index": 281,
+        "code": 65039,
+        "character": "\ud83d\udeb6\u200d\u2640\ufe0f"
+    },
+    "282": {
+        "index": 282,
+        "code": 57857,
+        "character": "\ue201"
+    },
+    "283": {
+        "index": 283,
+        "code": 65039,
+        "character": "\ud83c\udfc3\u200d\u2640\ufe0f"
+    },
+    "284": {
+        "index": 284,
+        "code": 57621,
+        "character": "\ue115"
+    },
+    "285": {
+        "index": 285,
+        "code": 58408,
+        "character": "\ue428"
+    },
+    "286": {
+        "index": 286,
+        "code": 128109,
+        "character": "\ud83d\udc6d"
+    },
+    "287": {
+        "index": 287,
+        "code": 128108,
+        "character": "\ud83d\udc6c"
+    },
+    "288": {
+        "index": 288,
+        "code": 58405,
+        "character": "\ue425"
+    },
+    "289": {
+        "index": 289,
+        "code": 128105,
+        "character": "\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d\udc69"
+    },
+    "290": {
+        "index": 290,
+        "code": 128104,
+        "character": "\ud83d\udc68\u200d\u2764\ufe0f\u200d\ud83d\udc68"
+    },
+    "291": {
+        "index": 291,
+        "code": 57617,
+        "character": "\ue111"
+    },
+    "292": {
+        "index": 292,
+        "code": 128105,
+        "character": "\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69"
+    },
+    "293": {
+        "index": 293,
+        "code": 128104,
+        "character": "\ud83d\udc68\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68"
+    },
+    "294": {
+        "index": 294,
+        "code": 128106,
+        "character": "\ud83d\udc6a"
+    },
+    "295": {
+        "index": 295,
+        "code": 128103,
+        "character": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67"
+    },
+    "296": {
+        "index": 296,
+        "code": 128102,
+        "character": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66"
+    },
+    "297": {
+        "index": 297,
+        "code": 128102,
+        "character": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66"
+    },
+    "298": {
+        "index": 298,
+        "code": 128103,
+        "character": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc67"
+    },
+    "299": {
+        "index": 299,
+        "code": 128102,
+        "character": "\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d\udc66"
+    },
+    "300": {
+        "index": 300,
+        "code": 128103,
+        "character": "\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d\udc67"
+    },
+    "301": {
+        "index": 301,
+        "code": 128102,
+        "character": "\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66"
+    },
+    "302": {
+        "index": 302,
+        "code": 128102,
+        "character": "\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66"
+    },
+    "303": {
+        "index": 303,
+        "code": 128103,
+        "character": "\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc67"
+    },
+    "304": {
+        "index": 304,
+        "code": 128102,
+        "character": "\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d\udc66"
+    },
+    "305": {
+        "index": 305,
+        "code": 128103,
+        "character": "\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d\udc67"
+    },
+    "306": {
+        "index": 306,
+        "code": 128102,
+        "character": "\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d\udc67\u200d\ud83d\udc66"
+    },
+    "307": {
+        "index": 307,
+        "code": 128102,
+        "character": "\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d\udc66\u200d\ud83d\udc66"
+    },
+    "308": {
+        "index": 308,
+        "code": 128103,
+        "character": "\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d\udc67\u200d\ud83d\udc67"
+    },
+    "309": {
+        "index": 309,
+        "code": 128102,
+        "character": "\ud83d\udc69\u200d\ud83d\udc66"
+    },
+    "310": {
+        "index": 310,
+        "code": 128103,
+        "character": "\ud83d\udc69\u200d\ud83d\udc67"
+    },
+    "311": {
+        "index": 311,
+        "code": 128102,
+        "character": "\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66"
+    },
+    "312": {
+        "index": 312,
+        "code": 128102,
+        "character": "\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66"
+    },
+    "313": {
+        "index": 313,
+        "code": 128103,
+        "character": "\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc67"
+    },
+    "314": {
+        "index": 314,
+        "code": 128102,
+        "character": "\ud83d\udc68\u200d\ud83d\udc66"
+    },
+    "315": {
+        "index": 315,
+        "code": 128103,
+        "character": "\ud83d\udc68\u200d\ud83d\udc67"
+    },
+    "316": {
+        "index": 316,
+        "code": 128102,
+        "character": "\ud83d\udc68\u200d\ud83d\udc67\u200d\ud83d\udc66"
+    },
+    "317": {
+        "index": 317,
+        "code": 128102,
+        "character": "\ud83d\udc68\u200d\ud83d\udc66\u200d\ud83d\udc66"
+    },
+    "318": {
+        "index": 318,
+        "code": 128103,
+        "character": "\ud83d\udc68\u200d\ud83d\udc67\u200d\ud83d\udc67"
+    },
+    "319": {
+        "index": 319,
+        "code": 129526,
+        "character": "\ud83e\uddf6"
+    },
+    "320": {
+        "index": 320,
+        "code": 129525,
+        "character": "\ud83e\uddf5"
+    },
+    "321": {
+        "index": 321,
+        "code": 129509,
+        "character": "\ud83e\udde5"
+    },
+    "322": {
+        "index": 322,
+        "code": 129404,
+        "character": "\ud83e\udd7c"
+    },
+    "323": {
+        "index": 323,
+        "code": 128090,
+        "character": "\ud83d\udc5a"
+    },
+    "324": {
+        "index": 324,
+        "code": 57350,
+        "character": "\ue006"
+    },
+    "325": {
+        "index": 325,
+        "code": 128086,
+        "character": "\ud83d\udc56"
+    },
+    "326": {
+        "index": 326,
+        "code": 58114,
+        "character": "\ue302"
+    },
+    "327": {
+        "index": 327,
+        "code": 58137,
+        "character": "\ue319"
+    },
+    "328": {
+        "index": 328,
+        "code": 58146,
+        "character": "\ue322"
+    },
+    "329": {
+        "index": 329,
+        "code": 58145,
+        "character": "\ue321"
+    },
+    "330": {
+        "index": 330,
+        "code": 129407,
+        "character": "\ud83e\udd7f"
+    },
+    "331": {
+        "index": 331,
+        "code": 57662,
+        "character": "\ue13e"
+    },
+    "332": {
+        "index": 332,
+        "code": 58138,
+        "character": "\ue31a"
+    },
+    "333": {
+        "index": 333,
+        "code": 58139,
+        "character": "\ue31b"
+    },
+    "334": {
+        "index": 334,
+        "code": 128094,
+        "character": "\ud83d\udc5e"
+    },
+    "335": {
+        "index": 335,
+        "code": 57351,
+        "character": "\ue007"
+    },
+    "336": {
+        "index": 336,
+        "code": 129406,
+        "character": "\ud83e\udd7e"
+    },
+    "337": {
+        "index": 337,
+        "code": 129510,
+        "character": "\ud83e\udde6"
+    },
+    "338": {
+        "index": 338,
+        "code": 129508,
+        "character": "\ud83e\udde4"
+    },
+    "339": {
+        "index": 339,
+        "code": 129507,
+        "character": "\ud83e\udde3"
+    },
+    "340": {
+        "index": 340,
+        "code": 58627,
+        "character": "\ue503"
+    },
+    "341": {
+        "index": 341,
+        "code": 129506,
+        "character": "\ud83e\udde2"
+    },
+    "342": {
+        "index": 342,
+        "code": 58136,
+        "character": "\ue318"
+    },
+    "343": {
+        "index": 343,
+        "code": 58425,
+        "character": "\ue439"
+    },
+    "344": {
+        "index": 344,
+        "code": 9937,
+        "character": "\u26d1"
+    },
+    "345": {
+        "index": 345,
+        "code": 57614,
+        "character": "\ue10e"
+    },
+    "346": {
+        "index": 346,
+        "code": 57396,
+        "character": "\ue034"
+    },
+    "347": {
+        "index": 347,
+        "code": 128093,
+        "character": "\ud83d\udc5d"
+    },
+    "348": {
+        "index": 348,
+        "code": 128091,
+        "character": "\ud83d\udc5b"
+    },
+    "349": {
+        "index": 349,
+        "code": 58147,
+        "character": "\ue323"
+    },
+    "350": {
+        "index": 350,
+        "code": 57630,
+        "character": "\ue11e"
+    },
+    "351": {
+        "index": 351,
+        "code": 58426,
+        "character": "\ue43a"
+    },
+    "352": {
+        "index": 352,
+        "code": 129523,
+        "character": "\ud83e\uddf3"
+    },
+    "353": {
+        "index": 353,
+        "code": 128083,
+        "character": "\ud83d\udc53"
+    },
+    "354": {
+        "index": 354,
+        "code": 128374,
+        "character": "\ud83d\udd76"
+    },
+    "355": {
+        "index": 355,
+        "code": 129405,
+        "character": "\ud83e\udd7d"
+    },
+    "356": {
+        "index": 356,
+        "code": 58428,
+        "character": "\ue43c"
+    },
+    "357": {
+        "index": 357,
+        "code": 57426,
+        "character": "\ue052"
+    },
+    "358": {
+        "index": 358,
+        "code": 57423,
+        "character": "\ue04f"
+    },
+    "359": {
+        "index": 359,
+        "code": 57427,
+        "character": "\ue053"
+    },
+    "360": {
+        "index": 360,
+        "code": 58660,
+        "character": "\ue524"
+    },
+    "361": {
+        "index": 361,
+        "code": 58668,
+        "character": "\ue52c"
+    },
+    "362": {
+        "index": 362,
+        "code": 129418,
+        "character": "\ud83e\udd8a"
+    },
+    "363": {
+        "index": 363,
+        "code": 57425,
+        "character": "\ue051"
+    },
+    "364": {
+        "index": 364,
+        "code": 128060,
+        "character": "\ud83d\udc3c"
+    },
+    "365": {
+        "index": 365,
+        "code": 58663,
+        "character": "\ue527"
+    },
+    "366": {
+        "index": 366,
+        "code": 57424,
+        "character": "\ue050"
+    },
+    "367": {
+        "index": 367,
+        "code": 129409,
+        "character": "\ud83e\udd81"
+    },
+    "368": {
+        "index": 368,
+        "code": 58667,
+        "character": "\ue52b"
+    },
+    "369": {
+        "index": 369,
+        "code": 57611,
+        "character": "\ue10b"
+    },
+    "370": {
+        "index": 370,
+        "code": 128061,
+        "character": "\ud83d\udc3d"
+    },
+    "371": {
+        "index": 371,
+        "code": 58673,
+        "character": "\ue531"
+    },
+    "372": {
+        "index": 372,
+        "code": 57609,
+        "character": "\ue109"
+    },
+    "373": {
+        "index": 373,
+        "code": 128584,
+        "character": "\ud83d\ude48"
+    },
+    "374": {
+        "index": 374,
+        "code": 128585,
+        "character": "\ud83d\ude49"
+    },
+    "375": {
+        "index": 375,
+        "code": 128586,
+        "character": "\ud83d\ude4a"
+    },
+    "376": {
+        "index": 376,
+        "code": 58664,
+        "character": "\ue528"
+    },
+    "377": {
+        "index": 377,
+        "code": 58670,
+        "character": "\ue52e"
+    },
+    "378": {
+        "index": 378,
+        "code": 57429,
+        "character": "\ue055"
+    },
+    "379": {
+        "index": 379,
+        "code": 58657,
+        "character": "\ue521"
+    },
+    "380": {
+        "index": 380,
+        "code": 58659,
+        "character": "\ue523"
+    },
+    "381": {
+        "index": 381,
+        "code": 128035,
+        "character": "\ud83d\udc23"
+    },
+    "382": {
+        "index": 382,
+        "code": 128037,
+        "character": "\ud83d\udc25"
+    },
+    "383": {
+        "index": 383,
+        "code": 129414,
+        "character": "\ud83e\udd86"
+    },
+    "384": {
+        "index": 384,
+        "code": 129413,
+        "character": "\ud83e\udd85"
+    },
+    "385": {
+        "index": 385,
+        "code": 129417,
+        "character": "\ud83e\udd89"
+    },
+    "386": {
+        "index": 386,
+        "code": 129415,
+        "character": "\ud83e\udd87"
+    },
+    "387": {
+        "index": 387,
+        "code": 58666,
+        "character": "\ue52a"
+    },
+    "388": {
+        "index": 388,
+        "code": 58671,
+        "character": "\ue52f"
+    },
+    "389": {
+        "index": 389,
+        "code": 57370,
+        "character": "\ue01a"
+    },
+    "390": {
+        "index": 390,
+        "code": 129412,
+        "character": "\ud83e\udd84"
+    },
+    "391": {
+        "index": 391,
+        "code": 128029,
+        "character": "\ud83d\udc1d"
+    },
+    "392": {
+        "index": 392,
+        "code": 58661,
+        "character": "\ue525"
+    },
+    "393": {
+        "index": 393,
+        "code": 129419,
+        "character": "\ud83e\udd8b"
+    },
+    "394": {
+        "index": 394,
+        "code": 128012,
+        "character": "\ud83d\udc0c"
+    },
+    "395": {
+        "index": 395,
+        "code": 128030,
+        "character": "\ud83d\udc1e"
+    },
+    "396": {
+        "index": 396,
+        "code": 128028,
+        "character": "\ud83d\udc1c"
+    },
+    "397": {
+        "index": 397,
+        "code": 129439,
+        "character": "\ud83e\udd9f"
+    },
+    "398": {
+        "index": 398,
+        "code": 129431,
+        "character": "\ud83e\udd97"
+    },
+    "399": {
+        "index": 399,
+        "code": 128375,
+        "character": "\ud83d\udd77"
+    },
+    "400": {
+        "index": 400,
+        "code": 128376,
+        "character": "\ud83d\udd78"
+    },
+    "401": {
+        "index": 401,
+        "code": 129410,
+        "character": "\ud83e\udd82"
+    },
+    "402": {
+        "index": 402,
+        "code": 128034,
+        "character": "\ud83d\udc22"
+    },
+    "403": {
+        "index": 403,
+        "code": 58669,
+        "character": "\ue52d"
+    },
+    "404": {
+        "index": 404,
+        "code": 129422,
+        "character": "\ud83e\udd8e"
+    },
+    "405": {
+        "index": 405,
+        "code": 129430,
+        "character": "\ud83e\udd96"
+    },
+    "406": {
+        "index": 406,
+        "code": 129429,
+        "character": "\ud83e\udd95"
+    },
+    "407": {
+        "index": 407,
+        "code": 57610,
+        "character": "\ue10a"
+    },
+    "408": {
+        "index": 408,
+        "code": 129425,
+        "character": "\ud83e\udd91"
+    },
+    "409": {
+        "index": 409,
+        "code": 129424,
+        "character": "\ud83e\udd90"
+    },
+    "410": {
+        "index": 410,
+        "code": 129438,
+        "character": "\ud83e\udd9e"
+    },
+    "411": {
+        "index": 411,
+        "code": 129408,
+        "character": "\ud83e\udd80"
+    },
+    "412": {
+        "index": 412,
+        "code": 128033,
+        "character": "\ud83d\udc21"
+    },
+    "413": {
+        "index": 413,
+        "code": 58658,
+        "character": "\ue522"
+    },
+    "414": {
+        "index": 414,
+        "code": 57369,
+        "character": "\ue019"
+    },
+    "415": {
+        "index": 415,
+        "code": 58656,
+        "character": "\ue520"
+    },
+    "416": {
+        "index": 416,
+        "code": 57428,
+        "character": "\ue054"
+    },
+    "417": {
+        "index": 417,
+        "code": 128011,
+        "character": "\ud83d\udc0b"
+    },
+    "418": {
+        "index": 418,
+        "code": 129416,
+        "character": "\ud83e\udd88"
+    },
+    "419": {
+        "index": 419,
+        "code": 128010,
+        "character": "\ud83d\udc0a"
+    },
+    "420": {
+        "index": 420,
+        "code": 128005,
+        "character": "\ud83d\udc05"
+    },
+    "421": {
+        "index": 421,
+        "code": 128006,
+        "character": "\ud83d\udc06"
+    },
+    "422": {
+        "index": 422,
+        "code": 129427,
+        "character": "\ud83e\udd93"
+    },
+    "423": {
+        "index": 423,
+        "code": 129421,
+        "character": "\ud83e\udd8d"
+    },
+    "424": {
+        "index": 424,
+        "code": 58662,
+        "character": "\ue526"
+    },
+    "425": {
+        "index": 425,
+        "code": 129435,
+        "character": "\ud83e\udd9b"
+    },
+    "426": {
+        "index": 426,
+        "code": 129423,
+        "character": "\ud83e\udd8f"
+    },
+    "427": {
+        "index": 427,
+        "code": 128042,
+        "character": "\ud83d\udc2a"
+    },
+    "428": {
+        "index": 428,
+        "code": 58672,
+        "character": "\ue530"
+    },
+    "429": {
+        "index": 429,
+        "code": 129426,
+        "character": "\ud83e\udd92"
+    },
+    "430": {
+        "index": 430,
+        "code": 129432,
+        "character": "\ud83e\udd98"
+    },
+    "431": {
+        "index": 431,
+        "code": 128003,
+        "character": "\ud83d\udc03"
+    },
+    "432": {
+        "index": 432,
+        "code": 128002,
+        "character": "\ud83d\udc02"
+    },
+    "433": {
+        "index": 433,
+        "code": 128004,
+        "character": "\ud83d\udc04"
+    },
+    "434": {
+        "index": 434,
+        "code": 57652,
+        "character": "\ue134"
+    },
+    "435": {
+        "index": 435,
+        "code": 128022,
+        "character": "\ud83d\udc16"
+    },
+    "436": {
+        "index": 436,
+        "code": 128015,
+        "character": "\ud83d\udc0f"
+    },
+    "437": {
+        "index": 437,
+        "code": 58665,
+        "character": "\ue529"
+    },
+    "438": {
+        "index": 438,
+        "code": 129433,
+        "character": "\ud83e\udd99"
+    },
+    "439": {
+        "index": 439,
+        "code": 128016,
+        "character": "\ud83d\udc10"
+    },
+    "440": {
+        "index": 440,
+        "code": 129420,
+        "character": "\ud83e\udd8c"
+    },
+    "441": {
+        "index": 441,
+        "code": 128021,
+        "character": "\ud83d\udc15"
+    },
+    "442": {
+        "index": 442,
+        "code": 128041,
+        "character": "\ud83d\udc29"
+    },
+    "443": {
+        "index": 443,
+        "code": 128008,
+        "character": "\ud83d\udc08"
+    },
+    "444": {
+        "index": 444,
+        "code": 128019,
+        "character": "\ud83d\udc13"
+    },
+    "445": {
+        "index": 445,
+        "code": 129411,
+        "character": "\ud83e\udd83"
+    },
+    "446": {
+        "index": 446,
+        "code": 129434,
+        "character": "\ud83e\udd9a"
+    },
+    "447": {
+        "index": 447,
+        "code": 129436,
+        "character": "\ud83e\udd9c"
+    },
+    "448": {
+        "index": 448,
+        "code": 129442,
+        "character": "\ud83e\udda2"
+    },
+    "449": {
+        "index": 449,
+        "code": 128330,
+        "character": "\ud83d\udd4a"
+    },
+    "450": {
+        "index": 450,
+        "code": 128007,
+        "character": "\ud83d\udc07"
+    },
+    "451": {
+        "index": 451,
+        "code": 129437,
+        "character": "\ud83e\udd9d"
+    },
+    "452": {
+        "index": 452,
+        "code": 129441,
+        "character": "\ud83e\udda1"
+    },
+    "453": {
+        "index": 453,
+        "code": 128001,
+        "character": "\ud83d\udc01"
+    },
+    "454": {
+        "index": 454,
+        "code": 128000,
+        "character": "\ud83d\udc00"
+    },
+    "455": {
+        "index": 455,
+        "code": 128063,
+        "character": "\ud83d\udc3f"
+    },
+    "456": {
+        "index": 456,
+        "code": 129428,
+        "character": "\ud83e\udd94"
+    },
+    "457": {
+        "index": 457,
+        "code": 128062,
+        "character": "\ud83d\udc3e"
+    },
+    "458": {
+        "index": 458,
+        "code": 128009,
+        "character": "\ud83d\udc09"
+    },
+    "459": {
+        "index": 459,
+        "code": 128050,
+        "character": "\ud83d\udc32"
+    },
+    "460": {
+        "index": 460,
+        "code": 58120,
+        "character": "\ue308"
+    },
+    "461": {
+        "index": 461,
+        "code": 57395,
+        "character": "\ue033"
+    },
+    "462": {
+        "index": 462,
+        "code": 127794,
+        "character": "\ud83c\udf32"
+    },
+    "463": {
+        "index": 463,
+        "code": 127795,
+        "character": "\ud83c\udf33"
+    },
+    "464": {
+        "index": 464,
+        "code": 58119,
+        "character": "\ue307"
+    },
+    "465": {
+        "index": 465,
+        "code": 127793,
+        "character": "\ud83c\udf31"
+    },
+    "466": {
+        "index": 466,
+        "code": 127807,
+        "character": "\ud83c\udf3f"
+    },
+    "467": {
+        "index": 467,
+        "code": 9752,
+        "character": "\u2618"
+    },
+    "468": {
+        "index": 468,
+        "code": 57616,
+        "character": "\ue110"
+    },
+    "469": {
+        "index": 469,
+        "code": 58422,
+        "character": "\ue436"
+    },
+    "470": {
+        "index": 470,
+        "code": 127883,
+        "character": "\ud83c\udf8b"
+    },
+    "471": {
+        "index": 471,
+        "code": 58439,
+        "character": "\ue447"
+    },
+    "472": {
+        "index": 472,
+        "code": 57625,
+        "character": "\ue119"
+    },
+    "473": {
+        "index": 473,
+        "code": 57624,
+        "character": "\ue118"
+    },
+    "474": {
+        "index": 474,
+        "code": 127812,
+        "character": "\ud83c\udf44"
+    },
+    "475": {
+        "index": 475,
+        "code": 58433,
+        "character": "\ue441"
+    },
+    "476": {
+        "index": 476,
+        "code": 58436,
+        "character": "\ue444"
+    },
+    "477": {
+        "index": 477,
+        "code": 58118,
+        "character": "\ue306"
+    },
+    "478": {
+        "index": 478,
+        "code": 58116,
+        "character": "\ue304"
+    },
+    "479": {
+        "index": 479,
+        "code": 57394,
+        "character": "\ue032"
+    },
+    "480": {
+        "index": 480,
+        "code": 129344,
+        "character": "\ud83e\udd40"
+    },
+    "481": {
+        "index": 481,
+        "code": 58115,
+        "character": "\ue303"
+    },
+    "482": {
+        "index": 482,
+        "code": 57392,
+        "character": "\ue030"
+    },
+    "483": {
+        "index": 483,
+        "code": 127804,
+        "character": "\ud83c\udf3c"
+    },
+    "484": {
+        "index": 484,
+        "code": 58117,
+        "character": "\ue305"
+    },
+    "485": {
+        "index": 485,
+        "code": 127774,
+        "character": "\ud83c\udf1e"
+    },
+    "486": {
+        "index": 486,
+        "code": 127773,
+        "character": "\ud83c\udf1d"
+    },
+    "487": {
+        "index": 487,
+        "code": 127771,
+        "character": "\ud83c\udf1b"
+    },
+    "488": {
+        "index": 488,
+        "code": 127772,
+        "character": "\ud83c\udf1c"
+    },
+    "489": {
+        "index": 489,
+        "code": 127770,
+        "character": "\ud83c\udf1a"
+    },
+    "490": {
+        "index": 490,
+        "code": 127765,
+        "character": "\ud83c\udf15"
+    },
+    "491": {
+        "index": 491,
+        "code": 127766,
+        "character": "\ud83c\udf16"
+    },
+    "492": {
+        "index": 492,
+        "code": 127767,
+        "character": "\ud83c\udf17"
+    },
+    "493": {
+        "index": 493,
+        "code": 127768,
+        "character": "\ud83c\udf18"
+    },
+    "494": {
+        "index": 494,
+        "code": 127761,
+        "character": "\ud83c\udf11"
+    },
+    "495": {
+        "index": 495,
+        "code": 127762,
+        "character": "\ud83c\udf12"
+    },
+    "496": {
+        "index": 496,
+        "code": 127763,
+        "character": "\ud83c\udf13"
+    },
+    "497": {
+        "index": 497,
+        "code": 127764,
+        "character": "\ud83c\udf14"
+    },
+    "498": {
+        "index": 498,
+        "code": 57420,
+        "character": "\ue04c"
+    },
+    "499": {
+        "index": 499,
+        "code": 127758,
+        "character": "\ud83c\udf0e"
+    },
+    "500": {
+        "index": 500,
+        "code": 127757,
+        "character": "\ud83c\udf0d"
+    },
+    "501": {
+        "index": 501,
+        "code": 127759,
+        "character": "\ud83c\udf0f"
+    },
+    "502": {
+        "index": 502,
+        "code": 128171,
+        "character": "\ud83d\udcab"
+    },
+    "503": {
+        "index": 503,
+        "code": 11088,
+        "character": "\u2b50"
+    },
+    "504": {
+        "index": 504,
+        "code": 58165,
+        "character": "\ue335"
+    },
+    "505": {
+        "index": 505,
+        "code": 58158,
+        "character": "\ue32e"
+    },
+    "506": {
+        "index": 506,
+        "code": 57661,
+        "character": "\ue13d"
+    },
+    "507": {
+        "index": 507,
+        "code": 9732,
+        "character": "\u2604"
+    },
+    "508": {
+        "index": 508,
+        "code": 128165,
+        "character": "\ud83d\udca5"
+    },
+    "509": {
+        "index": 509,
+        "code": 57629,
+        "character": "\ue11d"
+    },
+    "510": {
+        "index": 510,
+        "code": 127786,
+        "character": "\ud83c\udf2a"
+    },
+    "511": {
+        "index": 511,
+        "code": 58444,
+        "character": "\ue44c"
+    },
+    "512": {
+        "index": 512,
+        "code": 57418,
+        "character": "\ue04a"
+    },
+    "513": {
+        "index": 513,
+        "code": 127780,
+        "character": "\ud83c\udf24"
+    },
+    "514": {
+        "index": 514,
+        "code": 9925,
+        "character": "\u26c5"
+    },
+    "515": {
+        "index": 515,
+        "code": 127781,
+        "character": "\ud83c\udf25"
+    },
+    "516": {
+        "index": 516,
+        "code": 57417,
+        "character": "\ue049"
+    },
+    "517": {
+        "index": 517,
+        "code": 127782,
+        "character": "\ud83c\udf26"
+    },
+    "518": {
+        "index": 518,
+        "code": 127783,
+        "character": "\ud83c\udf27"
+    },
+    "519": {
+        "index": 519,
+        "code": 9928,
+        "character": "\u26c8"
+    },
+    "520": {
+        "index": 520,
+        "code": 127785,
+        "character": "\ud83c\udf29"
+    },
+    "521": {
+        "index": 521,
+        "code": 127784,
+        "character": "\ud83c\udf28"
+    },
+    "522": {
+        "index": 522,
+        "code": 10052,
+        "character": "\u2744"
+    },
+    "523": {
+        "index": 523,
+        "code": 9731,
+        "character": "\u2603"
+    },
+    "524": {
+        "index": 524,
+        "code": 57416,
+        "character": "\ue048"
+    },
+    "525": {
+        "index": 525,
+        "code": 127788,
+        "character": "\ud83c\udf2c"
+    },
+    "526": {
+        "index": 526,
+        "code": 58160,
+        "character": "\ue330"
+    },
+    "527": {
+        "index": 527,
+        "code": 128167,
+        "character": "\ud83d\udca7"
+    },
+    "528": {
+        "index": 528,
+        "code": 58161,
+        "character": "\ue331"
+    },
+    "529": {
+        "index": 529,
+        "code": 57419,
+        "character": "\ue04b"
+    },
+    "530": {
+        "index": 530,
+        "code": 9730,
+        "character": "\u2602"
+    },
+    "531": {
+        "index": 531,
+        "code": 58430,
+        "character": "\ue43e"
+    },
+    "532": {
+        "index": 532,
+        "code": 127787,
+        "character": "\ud83c\udf2b"
+    },
+    "533": {
+        "index": 533,
+        "code": 127823,
+        "character": "\ud83c\udf4f"
+    },
+    "534": {
+        "index": 534,
+        "code": 58181,
+        "character": "\ue345"
+    },
+    "535": {
+        "index": 535,
+        "code": 127824,
+        "character": "\ud83c\udf50"
+    },
+    "536": {
+        "index": 536,
+        "code": 58182,
+        "character": "\ue346"
+    },
+    "537": {
+        "index": 537,
+        "code": 127819,
+        "character": "\ud83c\udf4b"
+    },
+    "538": {
+        "index": 538,
+        "code": 127820,
+        "character": "\ud83c\udf4c"
+    },
+    "539": {
+        "index": 539,
+        "code": 58184,
+        "character": "\ue348"
+    },
+    "540": {
+        "index": 540,
+        "code": 127815,
+        "character": "\ud83c\udf47"
+    },
+    "541": {
+        "index": 541,
+        "code": 58183,
+        "character": "\ue347"
+    },
+    "542": {
+        "index": 542,
+        "code": 127816,
+        "character": "\ud83c\udf48"
+    },
+    "543": {
+        "index": 543,
+        "code": 127826,
+        "character": "\ud83c\udf52"
+    },
+    "544": {
+        "index": 544,
+        "code": 127825,
+        "character": "\ud83c\udf51"
+    },
+    "545": {
+        "index": 545,
+        "code": 129389,
+        "character": "\ud83e\udd6d"
+    },
+    "546": {
+        "index": 546,
+        "code": 127821,
+        "character": "\ud83c\udf4d"
+    },
+    "547": {
+        "index": 547,
+        "code": 129381,
+        "character": "\ud83e\udd65"
+    },
+    "548": {
+        "index": 548,
+        "code": 129373,
+        "character": "\ud83e\udd5d"
+    },
+    "549": {
+        "index": 549,
+        "code": 58185,
+        "character": "\ue349"
+    },
+    "550": {
+        "index": 550,
+        "code": 58186,
+        "character": "\ue34a"
+    },
+    "551": {
+        "index": 551,
+        "code": 129361,
+        "character": "\ud83e\udd51"
+    },
+    "552": {
+        "index": 552,
+        "code": 129382,
+        "character": "\ud83e\udd66"
+    },
+    "553": {
+        "index": 553,
+        "code": 129388,
+        "character": "\ud83e\udd6c"
+    },
+    "554": {
+        "index": 554,
+        "code": 129362,
+        "character": "\ud83e\udd52"
+    },
+    "555": {
+        "index": 555,
+        "code": 127798,
+        "character": "\ud83c\udf36"
+    },
+    "556": {
+        "index": 556,
+        "code": 127805,
+        "character": "\ud83c\udf3d"
+    },
+    "557": {
+        "index": 557,
+        "code": 129365,
+        "character": "\ud83e\udd55"
+    },
+    "558": {
+        "index": 558,
+        "code": 129364,
+        "character": "\ud83e\udd54"
+    },
+    "559": {
+        "index": 559,
+        "code": 127840,
+        "character": "\ud83c\udf60"
+    },
+    "560": {
+        "index": 560,
+        "code": 129360,
+        "character": "\ud83e\udd50"
+    },
+    "561": {
+        "index": 561,
+        "code": 129391,
+        "character": "\ud83e\udd6f"
+    },
+    "562": {
+        "index": 562,
+        "code": 58169,
+        "character": "\ue339"
+    },
+    "563": {
+        "index": 563,
+        "code": 129366,
+        "character": "\ud83e\udd56"
+    },
+    "564": {
+        "index": 564,
+        "code": 129384,
+        "character": "\ud83e\udd68"
+    },
+    "565": {
+        "index": 565,
+        "code": 129472,
+        "character": "\ud83e\uddc0"
+    },
+    "566": {
+        "index": 566,
+        "code": 129370,
+        "character": "\ud83e\udd5a"
+    },
+    "567": {
+        "index": 567,
+        "code": 57671,
+        "character": "\ue147"
+    },
+    "568": {
+        "index": 568,
+        "code": 129374,
+        "character": "\ud83e\udd5e"
+    },
+    "569": {
+        "index": 569,
+        "code": 129363,
+        "character": "\ud83e\udd53"
+    },
+    "570": {
+        "index": 570,
+        "code": 129385,
+        "character": "\ud83e\udd69"
+    },
+    "571": {
+        "index": 571,
+        "code": 127831,
+        "character": "\ud83c\udf57"
+    },
+    "572": {
+        "index": 572,
+        "code": 127830,
+        "character": "\ud83c\udf56"
+    },
+    "573": {
+        "index": 573,
+        "code": 129460,
+        "character": "\ud83e\uddb4"
+    },
+    "574": {
+        "index": 574,
+        "code": 127789,
+        "character": "\ud83c\udf2d"
+    },
+    "575": {
+        "index": 575,
+        "code": 57632,
+        "character": "\ue120"
+    },
+    "576": {
+        "index": 576,
+        "code": 58171,
+        "character": "\ue33b"
+    },
+    "577": {
+        "index": 577,
+        "code": 127829,
+        "character": "\ud83c\udf55"
+    },
+    "578": {
+        "index": 578,
+        "code": 129386,
+        "character": "\ud83e\udd6a"
+    },
+    "579": {
+        "index": 579,
+        "code": 129369,
+        "character": "\ud83e\udd59"
+    },
+    "580": {
+        "index": 580,
+        "code": 127790,
+        "character": "\ud83c\udf2e"
+    },
+    "581": {
+        "index": 581,
+        "code": 127791,
+        "character": "\ud83c\udf2f"
+    },
+    "582": {
+        "index": 582,
+        "code": 129367,
+        "character": "\ud83e\udd57"
+    },
+    "583": {
+        "index": 583,
+        "code": 129368,
+        "character": "\ud83e\udd58"
+    },
+    "584": {
+        "index": 584,
+        "code": 129387,
+        "character": "\ud83e\udd6b"
+    },
+    "585": {
+        "index": 585,
+        "code": 58175,
+        "character": "\ue33f"
+    },
+    "586": {
+        "index": 586,
+        "code": 58176,
+        "character": "\ue340"
+    },
+    "587": {
+        "index": 587,
+        "code": 58189,
+        "character": "\ue34d"
+    },
+    "588": {
+        "index": 588,
+        "code": 58177,
+        "character": "\ue341"
+    },
+    "589": {
+        "index": 589,
+        "code": 58180,
+        "character": "\ue344"
+    },
+    "590": {
+        "index": 590,
+        "code": 58188,
+        "character": "\ue34c"
+    },
+    "591": {
+        "index": 591,
+        "code": 129375,
+        "character": "\ud83e\udd5f"
+    },
+    "592": {
+        "index": 592,
+        "code": 127844,
+        "character": "\ud83c\udf64"
+    },
+    "593": {
+        "index": 593,
+        "code": 58178,
+        "character": "\ue342"
+    },
+    "594": {
+        "index": 594,
+        "code": 58174,
+        "character": "\ue33e"
+    },
+    "595": {
+        "index": 595,
+        "code": 58173,
+        "character": "\ue33d"
+    },
+    "596": {
+        "index": 596,
+        "code": 127845,
+        "character": "\ud83c\udf65"
+    },
+    "597": {
+        "index": 597,
+        "code": 129376,
+        "character": "\ud83e\udd60"
+    },
+    "598": {
+        "index": 598,
+        "code": 129390,
+        "character": "\ud83e\udd6e"
+    },
+    "599": {
+        "index": 599,
+        "code": 58179,
+        "character": "\ue343"
+    },
+    "600": {
+        "index": 600,
+        "code": 58172,
+        "character": "\ue33c"
+    },
+    "601": {
+        "index": 601,
+        "code": 58431,
+        "character": "\ue43f"
+    },
+    "602": {
+        "index": 602,
+        "code": 127848,
+        "character": "\ud83c\udf68"
+    },
+    "603": {
+        "index": 603,
+        "code": 58170,
+        "character": "\ue33a"
+    },
+    "604": {
+        "index": 604,
+        "code": 129383,
+        "character": "\ud83e\udd67"
+    },
+    "605": {
+        "index": 605,
+        "code": 129473,
+        "character": "\ud83e\uddc1"
+    },
+    "606": {
+        "index": 606,
+        "code": 57414,
+        "character": "\ue046"
+    },
+    "607": {
+        "index": 607,
+        "code": 58187,
+        "character": "\ue34b"
+    },
+    "608": {
+        "index": 608,
+        "code": 127854,
+        "character": "\ud83c\udf6e"
+    },
+    "609": {
+        "index": 609,
+        "code": 127853,
+        "character": "\ud83c\udf6d"
+    },
+    "610": {
+        "index": 610,
+        "code": 127852,
+        "character": "\ud83c\udf6c"
+    },
+    "611": {
+        "index": 611,
+        "code": 127851,
+        "character": "\ud83c\udf6b"
+    },
+    "612": {
+        "index": 612,
+        "code": 127871,
+        "character": "\ud83c\udf7f"
+    },
+    "613": {
+        "index": 613,
+        "code": 127849,
+        "character": "\ud83c\udf69"
+    },
+    "614": {
+        "index": 614,
+        "code": 127850,
+        "character": "\ud83c\udf6a"
+    },
+    "615": {
+        "index": 615,
+        "code": 127792,
+        "character": "\ud83c\udf30"
+    },
+    "616": {
+        "index": 616,
+        "code": 129372,
+        "character": "\ud83e\udd5c"
+    },
+    "617": {
+        "index": 617,
+        "code": 127855,
+        "character": "\ud83c\udf6f"
+    },
+    "618": {
+        "index": 618,
+        "code": 129371,
+        "character": "\ud83e\udd5b"
+    },
+    "619": {
+        "index": 619,
+        "code": 127868,
+        "character": "\ud83c\udf7c"
+    },
+    "620": {
+        "index": 620,
+        "code": 57413,
+        "character": "\ue045"
+    },
+    "621": {
+        "index": 621,
+        "code": 58168,
+        "character": "\ue338"
+    },
+    "622": {
+        "index": 622,
+        "code": 129380,
+        "character": "\ud83e\udd64"
+    },
+    "623": {
+        "index": 623,
+        "code": 58123,
+        "character": "\ue30b"
+    },
+    "624": {
+        "index": 624,
+        "code": 57415,
+        "character": "\ue047"
+    },
+    "625": {
+        "index": 625,
+        "code": 58124,
+        "character": "\ue30c"
+    },
+    "626": {
+        "index": 626,
+        "code": 129346,
+        "character": "\ud83e\udd42"
+    },
+    "627": {
+        "index": 627,
+        "code": 127863,
+        "character": "\ud83c\udf77"
+    },
+    "628": {
+        "index": 628,
+        "code": 129347,
+        "character": "\ud83e\udd43"
+    },
+    "629": {
+        "index": 629,
+        "code": 57412,
+        "character": "\ue044"
+    },
+    "630": {
+        "index": 630,
+        "code": 127865,
+        "character": "\ud83c\udf79"
+    },
+    "631": {
+        "index": 631,
+        "code": 127870,
+        "character": "\ud83c\udf7e"
+    },
+    "632": {
+        "index": 632,
+        "code": 129348,
+        "character": "\ud83e\udd44"
+    },
+    "633": {
+        "index": 633,
+        "code": 57411,
+        "character": "\ue043"
+    },
+    "634": {
+        "index": 634,
+        "code": 127869,
+        "character": "\ud83c\udf7d"
+    },
+    "635": {
+        "index": 635,
+        "code": 129379,
+        "character": "\ud83e\udd63"
+    },
+    "636": {
+        "index": 636,
+        "code": 129377,
+        "character": "\ud83e\udd61"
+    },
+    "637": {
+        "index": 637,
+        "code": 129378,
+        "character": "\ud83e\udd62"
+    },
+    "638": {
+        "index": 638,
+        "code": 129474,
+        "character": "\ud83e\uddc2"
+    },
+    "639": {
+        "index": 639,
+        "code": 57378,
+        "character": "\ue022"
+    },
+    "640": {
+        "index": 640,
+        "code": 129505,
+        "character": "\ud83e\udde1"
+    },
+    "641": {
+        "index": 641,
+        "code": 58156,
+        "character": "\ue32c"
+    },
+    "642": {
+        "index": 642,
+        "code": 58155,
+        "character": "\ue32b"
+    },
+    "643": {
+        "index": 643,
+        "code": 58154,
+        "character": "\ue32a"
+    },
+    "644": {
+        "index": 644,
+        "code": 58157,
+        "character": "\ue32d"
+    },
+    "645": {
+        "index": 645,
+        "code": 128420,
+        "character": "\ud83d\udda4"
+    },
+    "646": {
+        "index": 646,
+        "code": 57379,
+        "character": "\ue023"
+    },
+    "647": {
+        "index": 647,
+        "code": 10083,
+        "character": "\u2763"
+    },
+    "648": {
+        "index": 648,
+        "code": 128149,
+        "character": "\ud83d\udc95"
+    },
+    "649": {
+        "index": 649,
+        "code": 128158,
+        "character": "\ud83d\udc9e"
+    },
+    "650": {
+        "index": 650,
+        "code": 58151,
+        "character": "\ue327"
+    },
+    "651": {
+        "index": 651,
+        "code": 58152,
+        "character": "\ue328"
+    },
+    "652": {
+        "index": 652,
+        "code": 128150,
+        "character": "\ud83d\udc96"
+    },
+    "653": {
+        "index": 653,
+        "code": 58153,
+        "character": "\ue329"
+    },
+    "654": {
+        "index": 654,
+        "code": 58423,
+        "character": "\ue437"
+    },
+    "655": {
+        "index": 655,
+        "code": 57860,
+        "character": "\ue204"
+    },
+    "656": {
+        "index": 656,
+        "code": 9774,
+        "character": "\u262e"
+    },
+    "657": {
+        "index": 657,
+        "code": 10013,
+        "character": "\u271d"
+    },
+    "658": {
+        "index": 658,
+        "code": 9770,
+        "character": "\u262a"
+    },
+    "659": {
+        "index": 659,
+        "code": 128329,
+        "character": "\ud83d\udd49"
+    },
+    "660": {
+        "index": 660,
+        "code": 9784,
+        "character": "\u2638"
+    },
+    "661": {
+        "index": 661,
+        "code": 10017,
+        "character": "\u2721"
+    },
+    "662": {
+        "index": 662,
+        "code": 57918,
+        "character": "\ue23e"
+    },
+    "663": {
+        "index": 663,
+        "code": 128334,
+        "character": "\ud83d\udd4e"
+    },
+    "664": {
+        "index": 664,
+        "code": 9775,
+        "character": "\u262f"
+    },
+    "665": {
+        "index": 665,
+        "code": 9766,
+        "character": "\u2626"
+    },
+    "666": {
+        "index": 666,
+        "code": 128720,
+        "character": "\ud83d\uded0"
+    },
+    "667": {
+        "index": 667,
+        "code": 57931,
+        "character": "\ue24b"
+    },
+    "668": {
+        "index": 668,
+        "code": 57919,
+        "character": "\ue23f"
+    },
+    "669": {
+        "index": 669,
+        "code": 57920,
+        "character": "\ue240"
+    },
+    "670": {
+        "index": 670,
+        "code": 57921,
+        "character": "\ue241"
+    },
+    "671": {
+        "index": 671,
+        "code": 57922,
+        "character": "\ue242"
+    },
+    "672": {
+        "index": 672,
+        "code": 57923,
+        "character": "\ue243"
+    },
+    "673": {
+        "index": 673,
+        "code": 57924,
+        "character": "\ue244"
+    },
+    "674": {
+        "index": 674,
+        "code": 57925,
+        "character": "\ue245"
+    },
+    "675": {
+        "index": 675,
+        "code": 57926,
+        "character": "\ue246"
+    },
+    "676": {
+        "index": 676,
+        "code": 57927,
+        "character": "\ue247"
+    },
+    "677": {
+        "index": 677,
+        "code": 57928,
+        "character": "\ue248"
+    },
+    "678": {
+        "index": 678,
+        "code": 57929,
+        "character": "\ue249"
+    },
+    "679": {
+        "index": 679,
+        "code": 57930,
+        "character": "\ue24a"
+    },
+    "680": {
+        "index": 680,
+        "code": 57897,
+        "character": "\ue229"
+    },
+    "681": {
+        "index": 681,
+        "code": 9883,
+        "character": "\u269b"
+    },
+    "682": {
+        "index": 682,
+        "code": 127569,
+        "character": "\ud83c\ude51"
+    },
+    "683": {
+        "index": 683,
+        "code": 9762,
+        "character": "\u2622"
+    },
+    "684": {
+        "index": 684,
+        "code": 9763,
+        "character": "\u2623"
+    },
+    "685": {
+        "index": 685,
+        "code": 57937,
+        "character": "\ue251"
+    },
+    "686": {
+        "index": 686,
+        "code": 57936,
+        "character": "\ue250"
+    },
+    "687": {
+        "index": 687,
+        "code": 57877,
+        "character": "\ue215"
+    },
+    "688": {
+        "index": 688,
+        "code": 57878,
+        "character": "\ue216"
+    },
+    "689": {
+        "index": 689,
+        "code": 57880,
+        "character": "\ue218"
+    },
+    "690": {
+        "index": 690,
+        "code": 57901,
+        "character": "\ue22d"
+    },
+    "691": {
+        "index": 691,
+        "code": 57879,
+        "character": "\ue217"
+    },
+    "692": {
+        "index": 692,
+        "code": 57861,
+        "character": "\ue205"
+    },
+    "693": {
+        "index": 693,
+        "code": 57646,
+        "character": "\ue12e"
+    },
+    "694": {
+        "index": 694,
+        "code": 128174,
+        "character": "\ud83d\udcae"
+    },
+    "695": {
+        "index": 695,
+        "code": 57894,
+        "character": "\ue226"
+    },
+    "696": {
+        "index": 696,
+        "code": 58133,
+        "character": "\ue315"
+    },
+    "697": {
+        "index": 697,
+        "code": 58125,
+        "character": "\ue30d"
+    },
+    "698": {
+        "index": 698,
+        "code": 127540,
+        "character": "\ud83c\ude34"
+    },
+    "699": {
+        "index": 699,
+        "code": 57898,
+        "character": "\ue22a"
+    },
+    "700": {
+        "index": 700,
+        "code": 57895,
+        "character": "\ue227"
+    },
+    "701": {
+        "index": 701,
+        "code": 127538,
+        "character": "\ud83c\ude32"
+    },
+    "702": {
+        "index": 702,
+        "code": 58674,
+        "character": "\ue532"
+    },
+    "703": {
+        "index": 703,
+        "code": 58675,
+        "character": "\ue533"
+    },
+    "704": {
+        "index": 704,
+        "code": 58676,
+        "character": "\ue534"
+    },
+    "705": {
+        "index": 705,
+        "code": 127377,
+        "character": "\ud83c\udd91"
+    },
+    "706": {
+        "index": 706,
+        "code": 58677,
+        "character": "\ue535"
+    },
+    "707": {
+        "index": 707,
+        "code": 127384,
+        "character": "\ud83c\udd98"
+    },
+    "708": {
+        "index": 708,
+        "code": 58163,
+        "character": "\ue333"
+    },
+    "709": {
+        "index": 709,
+        "code": 58162,
+        "character": "\ue332"
+    },
+    "710": {
+        "index": 710,
+        "code": 128721,
+        "character": "\ud83d\uded1"
+    },
+    "711": {
+        "index": 711,
+        "code": 9940,
+        "character": "\u26d4"
+    },
+    "712": {
+        "index": 712,
+        "code": 128219,
+        "character": "\ud83d\udcdb"
+    },
+    "713": {
+        "index": 713,
+        "code": 128683,
+        "character": "\ud83d\udeab"
+    },
+    "714": {
+        "index": 714,
+        "code": 128175,
+        "character": "\ud83d\udcaf"
+    },
+    "715": {
+        "index": 715,
+        "code": 58164,
+        "character": "\ue334"
+    },
+    "716": {
+        "index": 716,
+        "code": 57635,
+        "character": "\ue123"
+    },
+    "717": {
+        "index": 717,
+        "code": 128695,
+        "character": "\ud83d\udeb7"
+    },
+    "718": {
+        "index": 718,
+        "code": 128687,
+        "character": "\ud83d\udeaf"
+    },
+    "719": {
+        "index": 719,
+        "code": 128691,
+        "character": "\ud83d\udeb3"
+    },
+    "720": {
+        "index": 720,
+        "code": 128689,
+        "character": "\ud83d\udeb1"
+    },
+    "721": {
+        "index": 721,
+        "code": 57863,
+        "character": "\ue207"
+    },
+    "722": {
+        "index": 722,
+        "code": 128245,
+        "character": "\ud83d\udcf5"
+    },
+    "723": {
+        "index": 723,
+        "code": 57864,
+        "character": "\ue208"
+    },
+    "724": {
+        "index": 724,
+        "code": 10071,
+        "character": "\u2757"
+    },
+    "725": {
+        "index": 725,
+        "code": 58167,
+        "character": "\ue337"
+    },
+    "726": {
+        "index": 726,
+        "code": 10067,
+        "character": "\u2753"
+    },
+    "727": {
+        "index": 727,
+        "code": 58166,
+        "character": "\ue336"
+    },
+    "728": {
+        "index": 728,
+        "code": 8252,
+        "character": "\u203c"
+    },
+    "729": {
+        "index": 729,
+        "code": 8265,
+        "character": "\u2049"
+    },
+    "730": {
+        "index": 730,
+        "code": 128261,
+        "character": "\ud83d\udd05"
+    },
+    "731": {
+        "index": 731,
+        "code": 128262,
+        "character": "\ud83d\udd06"
+    },
+    "732": {
+        "index": 732,
+        "code": 57644,
+        "character": "\ue12c"
+    },
+    "733": {
+        "index": 733,
+        "code": 57938,
+        "character": "\ue252"
+    },
+    "734": {
+        "index": 734,
+        "code": 128696,
+        "character": "\ud83d\udeb8"
+    },
+    "735": {
+        "index": 735,
+        "code": 57393,
+        "character": "\ue031"
+    },
+    "736": {
+        "index": 736,
+        "code": 9884,
+        "character": "\u269c"
+    },
+    "737": {
+        "index": 737,
+        "code": 57865,
+        "character": "\ue209"
+    },
+    "738": {
+        "index": 738,
+        "code": 9851,
+        "character": "\u267b"
+    },
+    "739": {
+        "index": 739,
+        "code": 9989,
+        "character": "\u2705"
+    },
+    "740": {
+        "index": 740,
+        "code": 57900,
+        "character": "\ue22c"
+    },
+    "741": {
+        "index": 741,
+        "code": 57674,
+        "character": "\ue14a"
+    },
+    "742": {
+        "index": 742,
+        "code": 10055,
+        "character": "\u2747"
+    },
+    "743": {
+        "index": 743,
+        "code": 57862,
+        "character": "\ue206"
+    },
+    "744": {
+        "index": 744,
+        "code": 10062,
+        "character": "\u274e"
+    },
+    "745": {
+        "index": 745,
+        "code": 127760,
+        "character": "\ud83c\udf10"
+    },
+    "746": {
+        "index": 746,
+        "code": 128160,
+        "character": "\ud83d\udca0"
+    },
+    "747": {
+        "index": 747,
+        "code": 9410,
+        "character": "\u24c2"
+    },
+    "748": {
+        "index": 748,
+        "code": 58435,
+        "character": "\ue443"
+    },
+    "749": {
+        "index": 749,
+        "code": 57660,
+        "character": "\ue13c"
+    },
+    "750": {
+        "index": 750,
+        "code": 57684,
+        "character": "\ue154"
+    },
+    "751": {
+        "index": 751,
+        "code": 58121,
+        "character": "\ue309"
+    },
+    "752": {
+        "index": 752,
+        "code": 57866,
+        "character": "\ue20a"
+    },
+    "753": {
+        "index": 753,
+        "code": 57679,
+        "character": "\ue14f"
+    },
+    "754": {
+        "index": 754,
+        "code": 57899,
+        "character": "\ue22b"
+    },
+    "755": {
+        "index": 755,
+        "code": 57896,
+        "character": "\ue228"
+    },
+    "756": {
+        "index": 756,
+        "code": 128706,
+        "character": "\ud83d\udec2"
+    },
+    "757": {
+        "index": 757,
+        "code": 128707,
+        "character": "\ud83d\udec3"
+    },
+    "758": {
+        "index": 758,
+        "code": 128708,
+        "character": "\ud83d\udec4"
+    },
+    "759": {
+        "index": 759,
+        "code": 128709,
+        "character": "\ud83d\udec5"
+    },
+    "760": {
+        "index": 760,
+        "code": 57656,
+        "character": "\ue138"
+    },
+    "761": {
+        "index": 761,
+        "code": 57657,
+        "character": "\ue139"
+    },
+    "762": {
+        "index": 762,
+        "code": 57658,
+        "character": "\ue13a"
+    },
+    "763": {
+        "index": 763,
+        "code": 57681,
+        "character": "\ue151"
+    },
+    "764": {
+        "index": 764,
+        "code": 128686,
+        "character": "\ud83d\udeae"
+    },
+    "765": {
+        "index": 765,
+        "code": 58631,
+        "character": "\ue507"
+    },
+    "766": {
+        "index": 766,
+        "code": 57867,
+        "character": "\ue20b"
+    },
+    "767": {
+        "index": 767,
+        "code": 57859,
+        "character": "\ue203"
+    },
+    "768": {
+        "index": 768,
+        "code": 128291,
+        "character": "\ud83d\udd23"
+    },
+    "769": {
+        "index": 769,
+        "code": 8505,
+        "character": "\u2139"
+    },
+    "770": {
+        "index": 770,
+        "code": 128292,
+        "character": "\ud83d\udd24"
+    },
+    "771": {
+        "index": 771,
+        "code": 128289,
+        "character": "\ud83d\udd21"
+    },
+    "772": {
+        "index": 772,
+        "code": 128288,
+        "character": "\ud83d\udd20"
+    },
+    "773": {
+        "index": 773,
+        "code": 127382,
+        "character": "\ud83c\udd96"
+    },
+    "774": {
+        "index": 774,
+        "code": 57933,
+        "character": "\ue24d"
+    },
+    "775": {
+        "index": 775,
+        "code": 57875,
+        "character": "\ue213"
+    },
+    "776": {
+        "index": 776,
+        "code": 57876,
+        "character": "\ue214"
+    },
+    "777": {
+        "index": 777,
+        "code": 57874,
+        "character": "\ue212"
+    },
+    "778": {
+        "index": 778,
+        "code": 127379,
+        "character": "\ud83c\udd93"
+    },
+    "779": {
+        "index": 779,
+        "code": 57893,
+        "character": "\ue225"
+    },
+    "780": {
+        "index": 780,
+        "code": 57884,
+        "character": "\ue21c"
+    },
+    "781": {
+        "index": 781,
+        "code": 57885,
+        "character": "\ue21d"
+    },
+    "782": {
+        "index": 782,
+        "code": 57886,
+        "character": "\ue21e"
+    },
+    "783": {
+        "index": 783,
+        "code": 57887,
+        "character": "\ue21f"
+    },
+    "784": {
+        "index": 784,
+        "code": 57888,
+        "character": "\ue220"
+    },
+    "785": {
+        "index": 785,
+        "code": 57889,
+        "character": "\ue221"
+    },
+    "786": {
+        "index": 786,
+        "code": 57890,
+        "character": "\ue222"
+    },
+    "787": {
+        "index": 787,
+        "code": 57891,
+        "character": "\ue223"
+    },
+    "788": {
+        "index": 788,
+        "code": 57892,
+        "character": "\ue224"
+    },
+    "789": {
+        "index": 789,
+        "code": 128287,
+        "character": "\ud83d\udd1f"
+    },
+    "790": {
+        "index": 790,
+        "code": 128290,
+        "character": "\ud83d\udd22"
+    },
+    "791": {
+        "index": 791,
+        "code": 57872,
+        "character": "\ue210"
+    },
+    "792": {
+        "index": 792,
+        "code": 8419,
+        "character": "*\ufe0f\u20e3"
+    },
+    "793": {
+        "index": 793,
+        "code": 65039,
+        "character": "\u23cf\ufe0f"
+    },
+    "794": {
+        "index": 794,
+        "code": 57914,
+        "character": "\ue23a"
+    },
+    "795": {
+        "index": 795,
+        "code": 9208,
+        "character": "\u23f8"
+    },
+    "796": {
+        "index": 796,
+        "code": 9199,
+        "character": "\u23ef"
+    },
+    "797": {
+        "index": 797,
+        "code": 9209,
+        "character": "\u23f9"
+    },
+    "798": {
+        "index": 798,
+        "code": 9210,
+        "character": "\u23fa"
+    },
+    "799": {
+        "index": 799,
+        "code": 9197,
+        "character": "\u23ed"
+    },
+    "800": {
+        "index": 800,
+        "code": 9198,
+        "character": "\u23ee"
+    },
+    "801": {
+        "index": 801,
+        "code": 57916,
+        "character": "\ue23c"
+    },
+    "802": {
+        "index": 802,
+        "code": 57917,
+        "character": "\ue23d"
+    },
+    "803": {
+        "index": 803,
+        "code": 9195,
+        "character": "\u23eb"
+    },
+    "804": {
+        "index": 804,
+        "code": 9196,
+        "character": "\u23ec"
+    },
+    "805": {
+        "index": 805,
+        "code": 57915,
+        "character": "\ue23b"
+    },
+    "806": {
+        "index": 806,
+        "code": 128316,
+        "character": "\ud83d\udd3c"
+    },
+    "807": {
+        "index": 807,
+        "code": 128317,
+        "character": "\ud83d\udd3d"
+    },
+    "808": {
+        "index": 808,
+        "code": 57908,
+        "character": "\ue234"
+    },
+    "809": {
+        "index": 809,
+        "code": 57909,
+        "character": "\ue235"
+    },
+    "810": {
+        "index": 810,
+        "code": 57906,
+        "character": "\ue232"
+    },
+    "811": {
+        "index": 811,
+        "code": 57907,
+        "character": "\ue233"
+    },
+    "812": {
+        "index": 812,
+        "code": 57910,
+        "character": "\ue236"
+    },
+    "813": {
+        "index": 813,
+        "code": 57912,
+        "character": "\ue238"
+    },
+    "814": {
+        "index": 814,
+        "code": 57913,
+        "character": "\ue239"
+    },
+    "815": {
+        "index": 815,
+        "code": 57911,
+        "character": "\ue237"
+    },
+    "816": {
+        "index": 816,
+        "code": 8597,
+        "character": "\u2195"
+    },
+    "817": {
+        "index": 817,
+        "code": 8596,
+        "character": "\u2194"
+    },
+    "818": {
+        "index": 818,
+        "code": 8618,
+        "character": "\u21aa"
+    },
+    "819": {
+        "index": 819,
+        "code": 8617,
+        "character": "\u21a9"
+    },
+    "820": {
+        "index": 820,
+        "code": 10548,
+        "character": "\u2934"
+    },
+    "821": {
+        "index": 821,
+        "code": 10549,
+        "character": "\u2935"
+    },
+    "822": {
+        "index": 822,
+        "code": 128256,
+        "character": "\ud83d\udd00"
+    },
+    "823": {
+        "index": 823,
+        "code": 128257,
+        "character": "\ud83d\udd01"
+    },
+    "824": {
+        "index": 824,
+        "code": 128258,
+        "character": "\ud83d\udd02"
+    },
+    "825": {
+        "index": 825,
+        "code": 128260,
+        "character": "\ud83d\udd04"
+    },
+    "826": {
+        "index": 826,
+        "code": 128259,
+        "character": "\ud83d\udd03"
+    },
+    "827": {
+        "index": 827,
+        "code": 57406,
+        "character": "\ue03e"
+    },
+    "828": {
+        "index": 828,
+        "code": 58150,
+        "character": "\ue326"
+    },
+    "829": {
+        "index": 829,
+        "code": 10133,
+        "character": "\u2795"
+    },
+    "830": {
+        "index": 830,
+        "code": 10134,
+        "character": "\u2796"
+    },
+    "831": {
+        "index": 831,
+        "code": 10135,
+        "character": "\u2797"
+    },
+    "832": {
+        "index": 832,
+        "code": 10006,
+        "character": "\u2716"
+    },
+    "833": {
+        "index": 833,
+        "code": 9854,
+        "character": "\u267e"
+    },
+    "834": {
+        "index": 834,
+        "code": 128178,
+        "character": "\ud83d\udcb2"
+    },
+    "835": {
+        "index": 835,
+        "code": 57673,
+        "character": "\ue149"
+    },
+    "836": {
+        "index": 836,
+        "code": 8482,
+        "character": "\u2122"
+    },
+    "837": {
+        "index": 837,
+        "code": 169,
+        "character": "\u00a9"
+    },
+    "838": {
+        "index": 838,
+        "code": 174,
+        "character": "\u00ae"
+    },
+    "839": {
+        "index": 839,
+        "code": 128488,
+        "character": "\ud83d\udc41\u200d\ud83d\udde8"
+    },
+    "840": {
+        "index": 840,
+        "code": 128282,
+        "character": "\ud83d\udd1a"
+    },
+    "841": {
+        "index": 841,
+        "code": 128281,
+        "character": "\ud83d\udd19"
+    },
+    "842": {
+        "index": 842,
+        "code": 128283,
+        "character": "\ud83d\udd1b"
+    },
+    "843": {
+        "index": 843,
+        "code": 57932,
+        "character": "\ue24c"
+    },
+    "844": {
+        "index": 844,
+        "code": 128284,
+        "character": "\ud83d\udd1c"
+    },
+    "845": {
+        "index": 845,
+        "code": 12336,
+        "character": "\u3030"
+    },
+    "846": {
+        "index": 846,
+        "code": 10160,
+        "character": "\u27b0"
+    },
+    "847": {
+        "index": 847,
+        "code": 57873,
+        "character": "\ue211"
+    },
+    "848": {
+        "index": 848,
+        "code": 10004,
+        "character": "\u2714"
+    },
+    "849": {
+        "index": 849,
+        "code": 9745,
+        "character": "\u2611"
+    },
+    "850": {
+        "index": 850,
+        "code": 128280,
+        "character": "\ud83d\udd18"
+    },
+    "851": {
+        "index": 851,
+        "code": 9898,
+        "character": "\u26aa"
+    },
+    "852": {
+        "index": 852,
+        "code": 9899,
+        "character": "\u26ab"
+    },
+    "853": {
+        "index": 853,
+        "code": 57881,
+        "character": "\ue219"
+    },
+    "854": {
+        "index": 854,
+        "code": 128309,
+        "character": "\ud83d\udd35"
+    },
+    "855": {
+        "index": 855,
+        "code": 128314,
+        "character": "\ud83d\udd3a"
+    },
+    "856": {
+        "index": 856,
+        "code": 128315,
+        "character": "\ud83d\udd3b"
+    },
+    "857": {
+        "index": 857,
+        "code": 128312,
+        "character": "\ud83d\udd38"
+    },
+    "858": {
+        "index": 858,
+        "code": 128313,
+        "character": "\ud83d\udd39"
+    },
+    "859": {
+        "index": 859,
+        "code": 128310,
+        "character": "\ud83d\udd36"
+    },
+    "860": {
+        "index": 860,
+        "code": 128311,
+        "character": "\ud83d\udd37"
+    },
+    "861": {
+        "index": 861,
+        "code": 57883,
+        "character": "\ue21b"
+    },
+    "862": {
+        "index": 862,
+        "code": 57882,
+        "character": "\ue21a"
+    },
+    "863": {
+        "index": 863,
+        "code": 9642,
+        "character": "\u25aa"
+    },
+    "864": {
+        "index": 864,
+        "code": 9643,
+        "character": "\u25ab"
+    },
+    "865": {
+        "index": 865,
+        "code": 9726,
+        "character": "\u25fe"
+    },
+    "866": {
+        "index": 866,
+        "code": 9725,
+        "character": "\u25fd"
+    },
+    "867": {
+        "index": 867,
+        "code": 9724,
+        "character": "\u25fc"
+    },
+    "868": {
+        "index": 868,
+        "code": 9723,
+        "character": "\u25fb"
+    },
+    "869": {
+        "index": 869,
+        "code": 11035,
+        "character": "\u2b1b"
+    },
+    "870": {
+        "index": 870,
+        "code": 11036,
+        "character": "\u2b1c"
+    },
+    "871": {
+        "index": 871,
+        "code": 57665,
+        "character": "\ue141"
+    },
+    "872": {
+        "index": 872,
+        "code": 128263,
+        "character": "\ud83d\udd07"
+    },
+    "873": {
+        "index": 873,
+        "code": 128265,
+        "character": "\ud83d\udd09"
+    },
+    "874": {
+        "index": 874,
+        "code": 128266,
+        "character": "\ud83d\udd0a"
+    },
+    "875": {
+        "index": 875,
+        "code": 58149,
+        "character": "\ue325"
+    },
+    "876": {
+        "index": 876,
+        "code": 128277,
+        "character": "\ud83d\udd15"
+    },
+    "877": {
+        "index": 877,
+        "code": 58135,
+        "character": "\ue317"
+    },
+    "878": {
+        "index": 878,
+        "code": 57666,
+        "character": "\ue142"
+    },
+    "879": {
+        "index": 879,
+        "code": 128172,
+        "character": "\ud83d\udcac"
+    },
+    "880": {
+        "index": 880,
+        "code": 128173,
+        "character": "\ud83d\udcad"
+    },
+    "881": {
+        "index": 881,
+        "code": 128495,
+        "character": "\ud83d\uddef"
+    },
+    "882": {
+        "index": 882,
+        "code": 57870,
+        "character": "\ue20e"
+    },
+    "883": {
+        "index": 883,
+        "code": 57871,
+        "character": "\ue20f"
+    },
+    "884": {
+        "index": 884,
+        "code": 57868,
+        "character": "\ue20c"
+    },
+    "885": {
+        "index": 885,
+        "code": 57869,
+        "character": "\ue20d"
+    },
+    "886": {
+        "index": 886,
+        "code": 127183,
+        "character": "\ud83c\udccf"
+    },
+    "887": {
+        "index": 887,
+        "code": 127924,
+        "character": "\ud83c\udfb4"
+    },
+    "888": {
+        "index": 888,
+        "code": 57645,
+        "character": "\ue12d"
+    },
+    "889": {
+        "index": 889,
+        "code": 57380,
+        "character": "\ue024"
+    },
+    "890": {
+        "index": 890,
+        "code": 57381,
+        "character": "\ue025"
+    },
+    "891": {
+        "index": 891,
+        "code": 57382,
+        "character": "\ue026"
+    },
+    "892": {
+        "index": 892,
+        "code": 57383,
+        "character": "\ue027"
+    },
+    "893": {
+        "index": 893,
+        "code": 57384,
+        "character": "\ue028"
+    },
+    "894": {
+        "index": 894,
+        "code": 57385,
+        "character": "\ue029"
+    },
+    "895": {
+        "index": 895,
+        "code": 57386,
+        "character": "\ue02a"
+    },
+    "896": {
+        "index": 896,
+        "code": 57387,
+        "character": "\ue02b"
+    },
+    "897": {
+        "index": 897,
+        "code": 57388,
+        "character": "\ue02c"
+    },
+    "898": {
+        "index": 898,
+        "code": 57389,
+        "character": "\ue02d"
+    },
+    "899": {
+        "index": 899,
+        "code": 57390,
+        "character": "\ue02e"
+    },
+    "900": {
+        "index": 900,
+        "code": 57391,
+        "character": "\ue02f"
+    },
+    "901": {
+        "index": 901,
+        "code": 128348,
+        "character": "\ud83d\udd5c"
+    },
+    "902": {
+        "index": 902,
+        "code": 128349,
+        "character": "\ud83d\udd5d"
+    },
+    "903": {
+        "index": 903,
+        "code": 128350,
+        "character": "\ud83d\udd5e"
+    },
+    "904": {
+        "index": 904,
+        "code": 128351,
+        "character": "\ud83d\udd5f"
+    },
+    "905": {
+        "index": 905,
+        "code": 128352,
+        "character": "\ud83d\udd60"
+    },
+    "906": {
+        "index": 906,
+        "code": 128353,
+        "character": "\ud83d\udd61"
+    },
+    "907": {
+        "index": 907,
+        "code": 128354,
+        "character": "\ud83d\udd62"
+    },
+    "908": {
+        "index": 908,
+        "code": 128355,
+        "character": "\ud83d\udd63"
+    },
+    "909": {
+        "index": 909,
+        "code": 128356,
+        "character": "\ud83d\udd64"
+    },
+    "910": {
+        "index": 910,
+        "code": 128357,
+        "character": "\ud83d\udd65"
+    },
+    "911": {
+        "index": 911,
+        "code": 128358,
+        "character": "\ud83d\udd66"
+    },
+    "912": {
+        "index": 912,
+        "code": 128359,
+        "character": "\ud83d\udd67"
+    }
+}
