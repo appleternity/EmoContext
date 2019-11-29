@@ -1,74 +1,135 @@
+import numpy as np
+import pandas as pd
+import os
+import json
 import tensorflow as tf
 import tensorflow.contrib.eager as tfe
+#from tensorflow.keras.utils import plot_model
+#import pydot
+#tf.keras.utils.vis_utils.pydot = pydot
+#from tensorflow.python.keras.utils.vis_utils import plot_model
+
 tf.enable_eager_execution()
 tf.executing_eagerly()
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+tf.pywrap_tensorflow.deprecation._PRINT_DEPRECATION_WARNINGS = False
 
-class ConversationLSTM:
-    def __init__(self):
-       	# parameter setting
-        #self.size_input = 22170
-        self.size_hidden = 300
+from data import *
+from baseline import save_result, load_result
+from config import *
+import pickle
+
+# CUDA SETTING
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
+# TODO:
+# (1) multi-class prediction: predict next-next sales
+
+class ConversationLSTM(tf.keras.Model):
+    def __init__(self, **kwargs):
+        print(kwargs)
+        super(TimeLSTM, self).__init__()
+
+        # parameter setting
         self.size_output = 4
-        self.shop_num = 60
-        self.batch_size = 5
-        self.keep_rate = 0.8
-        self.num_lstm = 3
-        self.vocab_size = 300
+        self.size_hidden      = kwargs.get("hidden_size", 300)
+        self.batch_size       = kwargs.get("batch_size", 256)
+        self.input_keep_rate  = kwargs.get("input_keep_rate", 0.8)
+        self.output_keep_rate = kwargs.get("output_keep_rate", 0.8)
+        self.state_keep_rate  = kwargs.get("state_keep_rate", 0.8)
+        self.stack_num        = kwargs.get("stack_num", 3)
+        self.vocab_size       = kwargs.get("vocab_size", 1024)
+        self.word_embedding   = kwargs.get("word_embedding", None)
+        self.train_embedding  = kwargs.get("train_embedding", True)
+        self.residual         = kwargs.get("residual", False)
+
+        self.is_training = True
 
         # building model
-        self.word_embedding = tfe.Variable(tf.random.normal(self.vocab_size, self.self.size_hidden))
+        if self.word_embedding:
+            self.word_embedding = tfe.Variable(tf.convert_to_tensor(self.word_embedding)), name="word_embedding")
+        else:
+            self.word_embedding = tfe.Variable(tf.random.normal([self.vocab_size, self.size_hidden]), name="word_embedding")
 
-        self.lstm_layers = [tf.contrib.cudnn_rnn.CudnnCompatibleLSTMCell(num_units=self.size_hidden) for _ in range(self.num_lstm)]
-        self.cell = tf.nn.rnn_cell.MultiRNNCell(self.lstm_layers)
-        self.dropout_cell = tf.nn.rnn_cell.MultiRNNCell([
-            tf.contrib.rnn.DropoutWrapper(
-                lstm_cell,
-                input_keep_prob=self.keep_rate,
-                output_keep_prob=self.keep_rate,
-                state_keep_prob=self.keep_rate,
-            )
-            for lstm_cell in self.lstm_layers
-        ])
+        self.lstm_layers = [
+            tf.contrib.cudnn_rnn.CudnnCompatibleLSTMCell(num_units=self.size_hidden)
+            for _ in range(self.stack_num)
+        ]
+        if self.residual:
+            self.cell = tf.nn.rnn_cell.MultiRNNCell([
+                tf.contrib.rnn.ResidualWrapper(lstm_cell)    
+                for i, lstm_cell in enumerate(self.lstm_layers)
+            ], name="multi_rnn_cell")
+            self.dropout_cell = tf.nn.rnn_cell.MultiRNNCell([
+                tf.contrib.rnn.ResidualWrapper(
+                    tf.contrib.rnn.DropoutWrapper(
+                        lstm_cell,
+                        input_keep_prob=self.input_keep_rate, 
+                        output_keep_prob=self.output_keep_rate, 
+                        state_keep_prob=self.state_keep_rate,
+                        variational_recurrent=True,
+                        #input_size=self.size_input if i == 0 else self.size_hidden,
+                        input_size=self.size_hidden,
+                        dtype=tf.float32
+                    )
+                )
+                for i, lstm_cell in enumerate(self.lstm_layers)
+            ], name="dropout_cell")
+        else:
+            self.cell = tf.nn.rnn_cell.MultiRNNCell(self.lstm_layers)
+            self.dropout_cell = tf.nn.rnn_cell.MultiRNNCell([
+                tf.contrib.rnn.DropoutWrapper(
+                    lstm_cell,
+                    input_keep_prob=self.input_keep_rate, 
+                    output_keep_prob=self.output_keep_rate, 
+                    state_keep_prob=self.state_keep_rate,
+                    variational_recurrent=True,
+                    #input_size=self.size_input if i == 0 else self.size_hidden,
+                    input_size=self.size_hidden,
+                    dtype=tf.float32
+                )
+                for i, lstm_cell in enumerate(self.lstm_layers)
+            ])
 
-        self.w = tfe.Variable(tf.random.normal([self.size_input, self.size_hidden]))
-        self.b = tfe.Variable(tf.random.normal([1, self.size_hidden]))
+        self.batch_norm_1 = tf.keras.layers.BatchNormalization()
+        self.batch_norm_2 = tf.keras.layers.BatchNormalization()
+        self.batch_norm_3 = tf.keras.layers.BatchNormalization()
+
+        self.output_dense_1 = tf.keras.layers.Dense(self.size_hidden*2, name="output_1")
+        self.output_dense_2 = tf.keras.layers.Dense(self.size_hidden//5, name="output_2")
+        self.output_dense_3 = tf.keras.layers.Dense(self.size_output, name="output_3")
+            
+    def call(self, text_1, text_2, text_3):
+        # embedding
+        embedding_1 = tf.nn.embedding_lookup(text_1)
+        embedding_2 = tf.nn.embedding_lookup(text_2)
+        embedding_3 = tf.nn.embedding_lookup(text_3)
         
-        self.output_w = tfe.Variable(tf.random.normal([self.size_hidden, self.size_output]))
-        self.output_b = tfe.Variable(tf.random.normal([1, self.size_output]))
-
-        #self.variables = [self.cell.variables, self.w, self.b, self.shop_adaption_w, self.output_w, self.output_b]
-        self.variables = None   
-
-    def get_variable(self):
-        self.variables = self.cell.variables + [self.w, self.b, self.shop_adaption_w, self.output_w, self.output_b]
-        self.get_variable = self.get_variable_static
-        return self.variables
-
-    def get_variable_static(self):
-        return self.variables
-
-    def predict_train(self, turn_1, turn_2, turn_3):
-        # turns: [batch_size, seq_len]
-        emb_1 = tf.nn.embedding_lookup(self.word_embedding, turn_1)
-        emb_2 = tf.nn.embedding_lookup(self.word_embedding, turn_2)
-        emb_3 = tf.nn.embedding_lookup(self.word_embedding, turn_3)
-
+        # lstm 
         init_state = self.cell.zero_state(self.batch_size, tf.float32)
-        rep_1, _ = tf.nn.dynamic_rnn(self.dropout_cell, emb_1, initial_state=init_state)
-        rep_2, _ = tf.nn.dynamic_rnn(self.dropout_cell, emb_2, initial_state=init_state)
-        rep_3, _ = tf.nn.dynamic_rnn(self.dropout_cell, emb_3, initial_state=init_state)
+        if self.is_training:
+            rnn_output_1, state = tf.nn.dynamic_rnn(self.dropout_cell, embedding_1, initial_state=init_state)
+            rnn_output_2, state = tf.nn.dynamic_rnn(self.dropout_cell, embedding_2, initial_state=init_state)
+            rnn_output_3, state = tf.nn.dynamic_rnn(self.dropout_cell, embedding_3, initial_state=init_state)
+        else:
+            rnn_output_1, state = tf.nn.dynamic_rnn(self.cell, embedding_1, initial_state=init_state)
+            rnn_output_2, state = tf.nn.dynamic_rnn(self.cell, embedding_2, initial_state=init_state)
+            rnn_output_3, state = tf.nn.dynamic_rnn(self.cell, embedding_3, initial_state=init_state)
 
-        print(rep_1.shape)
-        print(rep_2.shape)
-        print(rep_3.shape)
-        quit()
-        tf.concat((rep_1, rep_2, rep_3), axis=1)
+        representation = tf.concat([rnn_output_1, rnn_output_2, rnn_output_3], axis=0)
+        representation = self.batch_norm_1(representation)
+        representation = tf.nn.selu(self.output_dense_1(representation))
+        representation = self.batch_norm_2(representation)
+        representation = tf.nn.selu(self.output_dense_2(representation))
+        representation = self.batch_norm_3(representation)
+        output = self.output_dense_3(representation)
 
-    def predict(self, turn_1, turn_2, turn_3, seq_1, seq_2, seq_3):
-        pass
+        return outputs
 
-def main():
-    pass
+    def eval(self):
+        self.is_training = False
 
-if __name__ == "__main__":
-    main()
+    def train(self):
+        self.is_training = True
+
+

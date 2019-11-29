@@ -5,6 +5,7 @@ import os
 import pickle
 from config import *
 from nltk import word_tokenize
+from collections import Counter
 
 # TODO: twitter tokenizer
 
@@ -30,12 +31,36 @@ def load_data(filename, dir_path=data_path):
 
     return data
 
-def main():
-    data = load_data("train.txt")
-    print(data)
+def word_count(filename, dir_path=data_path):
+    target_file = os.path.join(dir_path, "processed_"+filename)
+    
+    with open(target_file, 'rb') as infile:
+        data = pickle.load(infile)
 
-    data = load_data("dev.txt")
-    print(data)
+    counter = Counter()
+    #print(data["1_tokenized"])
+
+    counter.update(word for sent in data["1_tokenized"] for word in sent)
+    counter.update(word for sent in data["2_tokenized"] for word in sent)
+    counter.update(word for sent in data["3_tokenized"] for word in sent)
+    #print(counter)
+    print(len(counter))
+
+    token_num = sum([
+        sum(len(sent) for sent in data["1_tokenized"]),
+        sum(len(sent) for sent in data["1_tokenized"]),
+        sum(len(sent) for sent in data["1_tokenized"]),
+    ])
+    print(token_num)
+
+def main():
+    #data = load_data("train.txt")
+    #print(data)
+
+    #data = load_data("dev.txt")
+    #print(data)
+
+    word_count("train.txt")
 
 if __name__ == "__main__":
     main()
