@@ -1,93 +1,163 @@
 import matplotlib.pyplot as plt
-# from google.colab.patches import cv2_imshow
 import tensorflow as tf
+from tensorflow.contrib.eager.python import tfe
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation, Dropout, Conv2D, MaxPool2D, Flatten
 import numpy as np
 import json
-import ZipFile
+from zipfile import ZipFile
 import cv2
+from config import *
+import os
+import pickle
+from scipy.spatial.distance import cdist
 
-#reading the json file content
-file_List =[]
-y_List=[]
-with open('DataInfo.json') as json_file:
-    data = json.load(json_file)
-    for a in data:
-      file_List.append(a[0]);
-      y_List.append(np.array(a[1]));
+tf.enable_eager_execution()
 
-# print(file_List)
+class EmojiCNN(tf.keras.Model):
+    def __init__(self, emoji_img, **kwargs):
+        super(EmojiCNN, self).__init__()
 
-#Extracting necessary emoji pictures based on Dataset
+        # parameters
+        self.batch_size = kwargs.get("batch_size", 128)
+        self.output_size = kwargs.get("output_size", 4)
 
-with ZipFile("Emoji_Downloaded.zip", 'r') as zip: 
-    zipObj = ZipFile('Train_Data.zip', 'w')
-    for i in file_List:
-      zipObj.write(zip.extract('Emoji_Downloaded/'+str(i)+".png"))
-    zipObj.close();
-    # print(zip.namelist())
+        # model
+        self.img_emb = tfe.Variable(emoji_img, name="imgs")
+        self.conv_1 = Conv2D(32, (5, 5), activation="relu") 
+        self.max_pool_1 = MaxPool2D((2, 2))
+        self.conv_2 = Conv2D(32, (5, 5), activation="relu") 
+        self.max_pool_2 = MaxPool2D((4, 4))
+        self.conv_3 = Conv2D(32, (5, 5), activation="relu") 
+        self.max_pool_3 = MaxPool2D((4, 4))
+        self.flatten = Flatten()
+        self.output_layer = Dense(self.output_size, activation="softmax")
+
+    def call(self, x, training=False):
+        imgs = tf.nn.embedding_lookup(self.img_emb, x)
+        imgs = tf.reshape(imgs, (-1, 128, 128, 3))
+
+        rep = self.conv_1(imgs)
+        rep = self.max_pool_1(rep)
+        rep = self.conv_2(rep)
+        rep = self.max_pool_2(rep)
+        rep = self.conv_3(rep)
+        rep = self.max_pool_3(rep)
+        flat = self.flatten(rep)
+        output = self.output_layer(flat)
+        return output
+
+    def get_vector(self, x):
+        imgs = tf.nn.embedding_lookup(self.img_emb, x)
+        imgs = tf.reshape(imgs, (-1, 128, 128, 3))
+
+        rep = self.conv_1(imgs)
+        rep = self.max_pool_1(rep)
+        rep = self.conv_2(rep)
+        rep = self.max_pool_2(rep)
+        rep = self.conv_3(rep)
+        rep = self.max_pool_3(rep)
+        flat = self.flatten(rep)
+        return flat
+
+class Embedding:
+    def __init__(self, vector, info):
+        self.vector = vector
+        self.info = info
+
+    def most_similar(self, x, num=10):
+        vec = self.vector[x, :].reshape([1, -1])
+        d = cdist(vec, self.vector, "cosine").reshape([-1, ])
+        d = np.argsort(d)
         
-with ZipFile('Train_Data.zip', 'r') as zipnewfile: 
-    # printing all the contents of the zip file 
-    zipnewfile.printdir() 
+        return [self.info[dd] for dd in d[:num]]
 
-#Training Images Created
+def build_emoji_data():
+    dir_path = os.path.join(data_path, "Emoji_Downloaded")
+    filenames = os.listdir(dir_path)
+    
+    data = []
+    for filename in filenames:
+        path = os.path.join(dir_path, filename)
+        img = cv2.imread(path).astype(np.float32) / 255
+        img = img.reshape((1, -1))
+        data.append(img)
 
-X_List = []
-def generateTrainingData():
-  with ZipFile("Train_Data.zip", 'r') as zip: 
-    for name in zip.namelist():
-      name = "'"+name+"'"
-      filepath = "/".join(name.strip("/").split('/')[1:])
-      filepath=filepath[:-1]
-      img_array = cv2.imread(filepath)
-      img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR) #RGBtoBGR(For Loading Exact Images)
-      X_List.append([img_array])
-      # print(img_array.shape)
-      
-      # break;
-generateTrainingData()
+    data = np.vstack(data)
+    print(data.shape)
 
-plt.imshow(X_List[2][0])
+    # save file
+    with open(os.path.join(data_path, "emoji_img_data.pkl"), 'wb') as outfile:
+        pickle.dump(data, outfile)
 
-plt.show()
-print(y_List[2])
+def vertorize(y):
+    if type(y) != np.ndarray:
+        y = np.array(y)
+    uni = np.unique(y)
+    one_hot = np.zeros([y.shape[0], uni.shape[0]])
+    for i, yy in enumerate(y):
+        one_hot[i, yy] = 1
+    return one_hot
 
-#converting the labels and imagedata into numpyarray from the list
-X_List = np.array(X_List).reshape(-1, 128, 128, 3)
-y_List = np.vstack(y_List) 
-# print(X_List.shape)
-# print(y_List.shape)
+def train():
+    # load data
+    with open(os.path.join(data_path, "emoji_img_data.pkl"), 'rb') as infile:
+        emoji_img = pickle.load(infile)
+    
+    with open(os.path.join(data_path, "emoji_dataset.json"), 'r', encoding='utf-8') as infile:
+        data = json.load(infile)
+        x = np.array([d[0] for d in data])
+        y = np.array([d[1] for d in data])
+        y = vertorize(y)
+    
+    batch_size = 128
 
-# print(y_List)
-# type(y_List)
+    model = EmojiCNN(
+        batch_size = 128,
+        output_size = 4,
+        emoji_img = emoji_img
+    )
 
-#Normalizing the data
+    model.compile(
+        optimizer='adam',
+        loss="categorical_crossentropy",
+        metrics=['acc']
+    )
 
-X_List = X_List/255.0
-# print(X_List)
+    history = model.fit(
+        x,
+        y,
+        epochs=1000, 
+        batch_size=batch_size,
+    )
 
-#Using Keras for implementing the CNN for extracting information
+    # get vector
+    test_x = np.array([i for i in range(0, emoji_img.shape[0])])
+    output = model.get_vector(test_x).numpy()
+    print(output.shape)
+
+    with open(os.path.join(data_path, "emoji_embedding.pkl"), 'wb') as outfile:
+        pickle.dump(output, outfile)
+
+def test():
+    with open(os.path.join(data_path, "emoji_embedding.pkl"), 'rb') as infile:
+        vector = pickle.load(infile)
+    print(vector.shape)
+
+    with open(os.path.join(data_path, "char.json"), 'r', encoding='utf-8') as infile:
+        char_dict = json.load(infile)
+        char_info = sorted(char_dict.values(), key=lambda x: x["index"])
+
+    embedding = Embedding(vector, char_info)
+    res = embedding.most_similar(0)
+    print(res)
+
+def main():
+    #build_emoji_data()
+    #train()
+    test()
+
+if __name__ == "__main__":
+    main()
 
 
-model = Sequential()
-model.add(Conv2D(64, (3,3), input_shape=(128, 128, 3)))
-model.add(Activation('relu'))
-model.add(MaxPool2D(pool_size=(2,2)))
-
-model.add(Conv2D(64, (3,3)))
-model.add(Activation('relu'))
-model.add(MaxPool2D(pool_size=(2,2)))
-
-model.add(Flatten())
-model.add(Dense(64))
-
-model.add(Dense(1))
-model.add(Activation('sigmoid'))
-
-model.compile(loss="sparse_categorical_crossentropy",
-              optimizer="rmsprop", 
-              metrics=['accuracy'])
-
-model.fit(X_List, y_List, epochs= 15, batch_size=64, validation_split=0.2)
