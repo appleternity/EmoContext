@@ -1,3 +1,5 @@
 *.pyc
 *.swo
 *.swp
+model/
+data/emoji_img_data.pkl

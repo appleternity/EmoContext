@@ -2,8 +2,19 @@ from data import load_data
 from model import ConversationLSTM
 import tensorflow as tf
 import tensorflow.contrib.eager as tfe
+import numpy as np
+import os
+from config import *
 tf.enable_eager_execution()
 tf.executing_eagerly()
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
+# TODO:
+# (1) Evaluation Metric (F1)
+# (2) Test Data
+# (3) Emoji Embedding
+# (4) Existing Embedding, such as GloVe
+# (5) Bins Training for acceleration
 
 class EarlyStop:
     def __init__(self, mode="max", history=5):
@@ -37,34 +48,37 @@ class EarlyStop:
         else:
             return True
 
+class MyCount:
+    def __init__(self, start=0):
+        self.num = start
+
+    def count(self):
+        temp = self.num
+        self.num += 1
+        return temp
+
 class Trainer:
     def __init__(self):
         #self.learning_rate = 0.0003
-        self.learning_rate = 0.001
+        self.learning_rate = 0.0001
         #self.learning_rate = 0.05
         #self.epoch_num = 1000
-        self.epoch_num = 1000
-        self.output_size = 22170
-        self.history_num = 30
+        self.epoch_num = 100
+        self.output_size = 4
+        self.history_num = 5
 
         # model hyper-parameter
-        self.batch_size = 30
-        self.hidden_size = 1500
-        self.num_multi_task = 2
-        self.stack_num = 3
+        self.batch_size = 512
+        self.hidden_size = 128
+        self.stack_num = 5
         self.input_keep_rate = 0.80
         self.output_keep_rate = 0.80
         self.state_keep_rate = 0.80
 
-        #self.data_mode = "all" # "train"
-        self.data_mode = "train"
-        self.weighted = True
-        self.year = False
         self.residual = False
 
         self.optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate)
-        #self.loss = tf.losses.mean_squared_error
-        self.loss = tf.keras.losses.Huber(delta=0.5, reduction=tf.losses.Reduction.NONE)
+        self.loss = lambda y_pred, y_true: tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y_pred, labels=y_true))
 
     def save_history(self, filename, history):
         with open(os.path.join(history_path, filename), 'w', encoding='utf-8') as outfile:
@@ -81,11 +95,15 @@ class Trainer:
             ).batch(batch_size=self.batch_size)
         return train_data
 
+    def accuracy_function(self, yhat, true_y):
+        correct_prediction = tf.equal(tf.argmax(yhat, 1), tf.argmax(true_y, 1))
+        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+        return accuracy
+
     def train(self):
         ## set model parameter
-        model = TimeLSTM(
+        model = ConversationLSTM(
             hidden_size = self.hidden_size,
-            num_multi_task = self.num_multi_task,
             batch_size = self.batch_size,
             stack_num = self.stack_num,
             input_keep_rate = self.input_keep_rate,
@@ -94,136 +112,106 @@ class Trainer:
             residual = self.residual,
         )
 
-        model_name = "lstm_layer{}_dim{}_multi{}_vr_{}{}{}{}".format(
-                self.stack_num, self.hidden_size, self.num_multi_task, self.data_mode,
-                "" if self.weighted is False else "_weighted",
-                "" if self.year is False else "_year",
+        model_name = "lstm_layer{}_dim{}".format(
+                self.stack_num, self.hidden_size,
                 "" if self.residual is False else "_res"
             )
         try:
             os.mkdir(os.path.join(model_path, model_name))
-        except:
+        except FileExistsError:
             pass
 
         ## build data
-        data = load_time_sequence_matrix()
-        data = data.astype(np.float32)
-        print("data.shape = ", data.shape)
-        data = np.clip(data, 0, 20)
+        data = load_data("train.txt") 
+        x_train = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
+        y_train = data.label.values
+        word_mapping = self.build_dictionary(x_train)
+        print("len(word) = {}".format(len(word_mapping)))
 
-        if self.data_mode == "train":
-            x_train = data[0:32, :]
-            y_train = data[1:33, :]
-        elif self.data_mode == "all":
-            x_train = data[0:33, :]
-            y_train = data[1:34, :]
-        else:
-            print("Please enter a valid data_mode value ['train', 'all']")
-            quit()
+        x_train = self.turn_index(x_train, word_mapping)
+        max_len = max(len(row) for x in x_train for row in x)
+        #length = np.array([len(row) for x in x_train for row in x])
+        #print(length.mean(), length.std())
+        x_train = self.padding(x_train, 30)
+        y_train = self.vectorize(y_train)
 
-        x_valid = data[0:33, :]
-        y_valid = data[1:34, :]
-        x_test = data[0:34, :]
-
-        x_train, y_train = build_lstm_data(x_train, y_train, verbose=True) 
-        x_valid, y_valid = build_lstm_data(x_valid, y_valid)
-        x_test, _ = build_lstm_data(x_test)
+        valid = load_data("dev.txt")
+        x_valid = [valid["1_tokenized"], valid["2_tokenized"], valid["3_tokenized"]]
+        y_valid = valid.label.values
+        x_valid = self.turn_index(x_valid, word_mapping)
+        max_len = max(len(row) for x in x_valid for row in x)
+        x_valid = self.padding(x_valid, max_len)
+        y_valid = self.vectorize(y_valid)
 
         ## build dataset
-        train_data = tf.data.Dataset.from_tensor_slices(tuple(list(x_train) + [y_train]))
+        train_data = tf.data.Dataset.from_tensor_slices(tuple(x_train + [y_train]))
         valid_data = tf.data.Dataset.from_tensor_slices(
-                tuple(list(x_valid) + [y_valid])
+                tuple(x_valid + [y_valid])
             ).batch(batch_size=self.batch_size)
-        test_data = tf.data.Dataset.from_tensor_slices(
-                x_test
-            ).batch(batch_size=self.batch_size)
+        #test_data = tf.data.Dataset.from_tensor_slices(
+        #        x_test
+        #    ).batch(batch_size=self.batch_size)
 
         total_steps = int(x_train[0].shape[0] / self.batch_size)
 
-        # load mask for testing
-        item_ids = load_testing_items()  
-        mask = np.ones(self.output_size, dtype=np.float32) * 0.05
-        mask[item_ids] = 1.0
-        mask = tf.convert_to_tensor(mask)
-        mask = tf.reshape(mask, [1, 1, -1])
-        print(mask)
-        if self.weighted == True:
-            def loss_function(y_true, y_pred): 
-                raw_loss = self.loss(y_true, y_pred)
-                return tf.reduce_sum(tf.losses.compute_weighted_loss(raw_loss, weights=mask))
-        else:
-            def loss_function(y_true, y_pred):
-                return tf.reduce_mean(self.loss(y_true, y_pred))
-
         ## train
         history = {
+            "train":[],
             "validation":[],
             "epoch":[],
-            "prediction":[],
         }
         prediction_history = []
-        stopper = EarlyStop(mode="min", history=self.history_num)
+        stopper = EarlyStop(mode="max", history=self.history_num)
         for epoch in range(self.epoch_num):
             model.train()
-            current_train_data = train_data.shuffle(200).batch(batch_size=self.batch_size)
+            current_train_data = train_data.shuffle(20000000).batch(batch_size=self.batch_size)
             loss_array = []
-            all_loss_array = []
-            for step, (x, shop_ids, seq_len, month_seq, year_seq, y) in enumerate(tfe.Iterator(current_train_data), 1):
+            acc_array = []
+            for step, (x1, x2, x3, y) in enumerate(tfe.Iterator(current_train_data), 1):
                 with tf.GradientTape() as tape:
-                    if self.year:
-                        predicted, predicted_next_list = model(shop_ids, x, seq_len, month_seq, year_seq)
-                    else:
-                        predicted, predicted_next_list = model(shop_ids, x, seq_len, month_seq)
-                    current_loss = loss_function(y, predicted)
-
-                    # multi-task
-                    next_loss = sum([
-                        loss_function(y[:, i:, :], predicted_next[:, :-i, :])
-                        for i, predicted_next in enumerate(predicted_next_list, 1)
-                    ])
-                    
-                    all_loss = (self.num_multi_task+1)*current_loss + next_loss
-
-                    grads = tape.gradient(all_loss, model.variables)
+                    predicted = model(x1, x2, x3)
+                    current_loss = self.loss(predicted, y)
+                    grads = tape.gradient(current_loss, model.variables)
                     self.optimizer.apply_gradients(zip(grads, model.variables))
-                    
-                    loss_array.append(current_loss.numpy())
-                    all_loss_array.append(all_loss.numpy())
+                    current_acc = self.accuracy_function(predicted, y)
+
+                loss_array.append(current_loss.numpy())
+                acc_array.append(current_acc.numpy())
 
                 if step % 1 == 0:
                     loss = round(np.hstack(loss_array).mean(), 5)
-                    all_loss = round(np.hstack(all_loss_array).mean(), 5)
-                    print("\x1b[2K\rEpoch:{} [{}%] loss={:.5f} all_loss={:.5f}".format(epoch, round(step/total_steps*100, 2), loss, all_loss), end="")
+                    acc = round(np.hstack(acc_array).mean(), 5)
+                    print("\x1b[2K\rEpoch:{} [{}%] loss={:.5f} acc={:.5f}".format(epoch, round(step/total_steps*100, 2), loss, acc), end="")
+
+            loss = round(np.hstack(loss_array).mean(), 5)
+            acc = round(np.hstack(acc_array).mean(), 5)
+            history["train"].append(acc)
+            history["epoch"].append(epoch)
 
             # validation
-            if epoch % 1 == 0:
-                print("\nvalidation ", end="")
-                model.eval()
-                result_pred = []
-                result_true = []
-                for step, (x, shop_ids, seq_len, month_seq, year_seq, y) in enumerate(tfe.Iterator(valid_data), 1):
-                    if self.year:
-                        predicted, predicted_next_list = model(shop_ids, x, seq_len, month_seq, year_seq)
-                    else:
-                        predicted, predicted_next_list = model(shop_ids, x, seq_len, month_seq)
-                    result_pred.append(predicted.numpy())
-                    result_true.append(y.numpy())
-                
-                y_true = np.vstack(result_true)[:, -1, :]
-                y_pred = np.vstack(result_pred)[:, -1, :]
-                score = self.evaluation(y_true, y_pred)
-                print("score = ", score)
-                history["validation"].append(score)
-                history["epoch"].append(epoch)
-                prediction_history.append(y_pred.reshape([1, -1]))
+            loss_array = []
+            acc_array = []
+            model.eval()
+            for step, (x1, x2, x3, y) in enumerate(tfe.Iterator(valid_data), 1):
+                predicted = model(x1, x2, x3)
+                current_loss = self.loss(predicted, y)
+                current_acc = self.accuracy_function(predicted, y)
 
-                # check early stopping
-                if stopper.check(score):
-                    print("Early Stopping at Epoch = ", epoch)
-                    break
+                loss_array.append(current_loss.numpy())
+                acc_array.append(current_acc.numpy())
+
+            loss = round(np.hstack(loss_array).mean(), 5)
+            acc = round(np.hstack(acc_array).mean(), 5)
+            history["validation"].append(acc)
+            print("\nValid loss={:.5f} acc={:.5f}".format(loss, acc))
+
+            # check early stopping
+            if stopper.check(acc):
+                print("Early Stopping at Epoch = ", epoch)
+                break
 
             # save model
-            if epoch % 100 == 0:
+            if epoch % 10 == 0:
                 tfe.Saver(model.variables).save(
                     os.path.join(model_path, model_name, "checkpoint"),
                     global_step=epoch,
@@ -234,7 +222,8 @@ class Trainer:
             os.path.join(model_path, model_name, "checkpoint"),
             global_step=epoch,
         )
-
+        
+        """
         # output prediction history
         prediction_history = np.vstack(prediction_history)
         with open(os.path.join(prediction_history_path, model_name+".pkl"), 'wb') as outfile:
@@ -252,15 +241,62 @@ class Trainer:
         y_pred = np.vstack(result_pred)[:, -1, :]
         save_result(model_name + ".pkl", y_pred)
         self.save_history(model_name + ".json", history)
+        """
+
+    def build_dictionary(self, data_list, min_freq=5, verbose=True):
+        # 0: <PAD>, 1: <UNK>
+        freq = {}
+        for data in data_list:
+            for row in data:
+                for word in row:
+                    freq[word] = freq.get(word, 0) + 1
+
+        counter = MyCount(start=2)
+        freq_filtered = {
+            word : counter.count()
+            for word, count in freq.items()
+            if count > min_freq
+        }
+        freq_filtered["<PAD>"] = 0
+        freq_filtered["<UNK>"] = 1
+        if verbose:
+            print("len(freq_filtered) = {}, freq = {}".format(len(freq_filtered), len(freq)))
+        return freq_filtered
+
+    def turn_index(self, data_list, word_dictionary):
+        unk_index = word_dictionary["<UNK>"]
+        new_data = [
+            [
+                [word_dictionary.get(word, unk_index) for word in row]
+                for row in data    
+            ]
+            for data in data_list        
+        ]
+        return new_data
+
+    def padding(self, data_list, pad_num=50, pad_index=0):
+        new_data_list = []
+        for data in data_list:
+            new_data = np.ones((len(data), pad_num), dtype=np.int32) * pad_index
+            for i, row in enumerate(data):
+                length = min(len(row), pad_num)
+                new_data[i, pad_num-length:] = row[:length]
+            new_data_list.append(new_data)
+        return new_data_list
+
+    def vectorize(self, y):
+        if type(y) != np.ndarray:
+            y = np.array(y)
+        uni = np.unique(y)
+        one_hot = np.zeros([y.shape[0], uni.shape[0]], dtype=np.float32)
+        for i, yy in enumerate(y):
+            one_hot[i, yy] = 1
+        return one_hot
 
 def main():
-    # build model
-    
     # build trainer
     trainer = Trainer()
     trainer.train()
-    #model_name = "lstm_early_stop_cleaning_month_dim300_ed_vr_all"
-    #trainer.output_test(filename=model_name+".pkl")
 
 if __name__ == "__main__":
     main()

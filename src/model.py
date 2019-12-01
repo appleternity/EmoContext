@@ -4,23 +4,13 @@ import os
 import json
 import tensorflow as tf
 import tensorflow.contrib.eager as tfe
-#from tensorflow.keras.utils import plot_model
-#import pydot
-#tf.keras.utils.vis_utils.pydot = pydot
-#from tensorflow.python.keras.utils.vis_utils import plot_model
-
-tf.enable_eager_execution()
-tf.executing_eagerly()
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-tf.pywrap_tensorflow.deprecation._PRINT_DEPRECATION_WARNINGS = False
-
 from data import *
-from baseline import save_result, load_result
 from config import *
 import pickle
 
 # CUDA SETTING
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+#tf.enable_eager_execution()
+#tf.executing_eagerly()
 
 # TODO:
 # (1) multi-class prediction: predict next-next sales
@@ -28,11 +18,11 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 class ConversationLSTM(tf.keras.Model):
     def __init__(self, **kwargs):
         print(kwargs)
-        super(TimeLSTM, self).__init__()
+        super(ConversationLSTM, self).__init__()
 
         # parameter setting
         self.size_output = 4
-        self.size_hidden      = kwargs.get("hidden_size", 300)
+        self.size_hidden      = kwargs.get("hidden_size", 128)
         self.batch_size       = kwargs.get("batch_size", 256)
         self.input_keep_rate  = kwargs.get("input_keep_rate", 0.8)
         self.output_keep_rate = kwargs.get("output_keep_rate", 0.8)
@@ -47,7 +37,7 @@ class ConversationLSTM(tf.keras.Model):
 
         # building model
         if self.word_embedding:
-            self.word_embedding = tfe.Variable(tf.convert_to_tensor(self.word_embedding)), name="word_embedding")
+            self.word_embedding = tfe.Variable(tf.convert_to_tensor(self.word_embedding), name="word_embedding")
         else:
             self.word_embedding = tfe.Variable(tf.random.normal([self.vocab_size, self.size_hidden]), name="word_embedding")
 
@@ -101,12 +91,12 @@ class ConversationLSTM(tf.keras.Model):
             
     def call(self, text_1, text_2, text_3):
         # embedding
-        embedding_1 = tf.nn.embedding_lookup(text_1)
-        embedding_2 = tf.nn.embedding_lookup(text_2)
-        embedding_3 = tf.nn.embedding_lookup(text_3)
+        embedding_1 = tf.nn.embedding_lookup(self.word_embedding, text_1)
+        embedding_2 = tf.nn.embedding_lookup(self.word_embedding, text_2)
+        embedding_3 = tf.nn.embedding_lookup(self.word_embedding, text_3)
         
         # lstm 
-        init_state = self.cell.zero_state(self.batch_size, tf.float32)
+        init_state = self.cell.zero_state(text_1.shape[0], tf.float32)
         if self.is_training:
             rnn_output_1, state = tf.nn.dynamic_rnn(self.dropout_cell, embedding_1, initial_state=init_state)
             rnn_output_2, state = tf.nn.dynamic_rnn(self.dropout_cell, embedding_2, initial_state=init_state)
@@ -116,7 +106,7 @@ class ConversationLSTM(tf.keras.Model):
             rnn_output_2, state = tf.nn.dynamic_rnn(self.cell, embedding_2, initial_state=init_state)
             rnn_output_3, state = tf.nn.dynamic_rnn(self.cell, embedding_3, initial_state=init_state)
 
-        representation = tf.concat([rnn_output_1, rnn_output_2, rnn_output_3], axis=0)
+        representation = tf.concat([rnn_output_1[:, -1, :], rnn_output_2[:, -1, :], rnn_output_3[:, -1, :]], axis=1)
         representation = self.batch_norm_1(representation)
         representation = tf.nn.selu(self.output_dense_1(representation))
         representation = self.batch_norm_2(representation)
@@ -124,7 +114,7 @@ class ConversationLSTM(tf.keras.Model):
         representation = self.batch_norm_3(representation)
         output = self.output_dense_3(representation)
 
-        return outputs
+        return output
 
     def eval(self):
         self.is_training = False
