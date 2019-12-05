@@ -13,7 +13,6 @@ import codecs
 # html3.html: https://www.iemoji.com/meanings-gallery/food-drink
 # html4.html: https://www.iemoji.com/meanings-gallery/symbols
 
-
 def get_emoji_info(url):
     res = requests.get(url)
     soup = BeautifulSoup(res.text, "html.parser")

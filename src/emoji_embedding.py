@@ -27,7 +27,7 @@ class EmojiCNN(tf.keras.Model):
         self.output_size = kwargs.get("output_size", 4)
 
         # model
-        self.img_emb = tfe.Variable(emoji_img, name="imgs")
+        self.img_emb = tfe.Variable(emoji_img, name="imgs", trainable=False)
         self.conv_1 = Conv2D(32, (5, 5), activation="relu") 
         self.max_pool_1 = MaxPool2D((2, 2))
         self.conv_2 = Conv2D(32, (5, 5), activation="relu") 

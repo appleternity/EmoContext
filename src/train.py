@@ -5,6 +5,7 @@ import tensorflow.contrib.eager as tfe
 import numpy as np
 import os
 from config import *
+from sklearn.metrics import *
 tf.enable_eager_execution()
 tf.executing_eagerly()
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -15,6 +16,15 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # (3) Emoji Embedding
 # (4) Existing Embedding, such as GloVe
 # (5) Bins Training for acceleration
+# (6) Check data (lower?)
+
+def metric(y_true, y_pred):
+    return [
+        precision_recall_fscore_support(y_true, y_pred, average="micro", labels=[0, 1, 2]),
+        precision_recall_fscore_support(y_true, y_pred, average="micro", labels=[0, 1, 2, 3]),
+        precision_recall_fscore_support(y_true, y_pred, average="macro", labels=[0, 1, 2]),
+        precision_recall_fscore_support(y_true, y_pred, average="macro", labels=[0, 1, 2, 3]),
+    ]
 
 class EarlyStop:
     def __init__(self, mode="max", history=5):
@@ -95,6 +105,12 @@ class Trainer:
             ).batch(batch_size=self.batch_size)
         return train_data
 
+    def process_data(x, y, word_dictionary):
+        x = self.turn_index(x, word_mapping)
+        max_len = max(len(row) for x in x for row in x)
+        x = self.padding(x, max_len)
+        y = self.vectorize(y)
+
     def accuracy_function(self, yhat, true_y):
         correct_prediction = tf.equal(tf.argmax(yhat, 1), tf.argmax(true_y, 1))
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
@@ -128,29 +144,34 @@ class Trainer:
         word_mapping = self.build_dictionary(x_train)
         print("len(word) = {}".format(len(word_mapping)))
 
-        x_train = self.turn_index(x_train, word_mapping)
-        max_len = max(len(row) for x in x_train for row in x)
-        #length = np.array([len(row) for x in x_train for row in x])
-        #print(length.mean(), length.std())
-        x_train = self.padding(x_train, 30)
-        y_train = self.vectorize(y_train)
+        data = load_data("valid.txt")
+        x_valid = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
+        y_valid = data.label.values
+        
+        data = load_data("test.txt")
+        x_test = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
+        y_test = data.label.values
 
-        valid = load_data("dev.txt")
-        x_valid = [valid["1_tokenized"], valid["2_tokenized"], valid["3_tokenized"]]
-        y_valid = valid.label.values
-        x_valid = self.turn_index(x_valid, word_mapping)
-        max_len = max(len(row) for x in x_valid for row in x)
-        x_valid = self.padding(x_valid, max_len)
-        y_valid = self.vectorize(y_valid)
+        x_train, y_train = self.process_data(x_train, y_train, word_mapping)
+        x_valid, y_valid = self.process_data(x_valid, y_valid, word_mapping)
+        x_test, y_test   = self.process_data(x_test, y_test, word_mapping)
+
+        ## print data shape
+        for setting, (x, y) in zip(
+            ["train, valid, text"], 
+            [[x_train, y_train], [x_valid, y_valid], [x_test, y_test]]
+        ):
+            print(setting)
+            print(" x = ", x.shape, " y = ", y.shape)
 
         ## build dataset
-        train_data = tf.data.Dataset.from_tensor_slices(tuple(x_train + [y_train]))
+        train_data = tf.data.Dataset.from_tensor_slices(x_train + [y_train])
         valid_data = tf.data.Dataset.from_tensor_slices(
-                tuple(x_valid + [y_valid])
+                x_valid + [y_valid]
             ).batch(batch_size=self.batch_size)
-        #test_data = tf.data.Dataset.from_tensor_slices(
-        #        x_test
-        #    ).batch(batch_size=self.batch_size)
+        test_data = tf.data.Dataset.from_tensor_slices(
+                x_test
+            ).batch(batch_size=self.batch_size)
 
         total_steps = int(x_train[0].shape[0] / self.batch_size)
 
@@ -164,7 +185,7 @@ class Trainer:
         stopper = EarlyStop(mode="max", history=self.history_num)
         for epoch in range(self.epoch_num):
             model.train()
-            current_train_data = train_data.shuffle(20000000).batch(batch_size=self.batch_size)
+            current_train_data = train_data.shuffle(x_train.shape[0]).batch(batch_size=self.batch_size)
             loss_array = []
             acc_array = []
             for step, (x1, x2, x3, y) in enumerate(tfe.Iterator(current_train_data), 1):
