@@ -2,4 +2,7 @@
 *.swo
 *.swp
 model/
+model
+history
+history/
 data/emoji_img_data.pkl

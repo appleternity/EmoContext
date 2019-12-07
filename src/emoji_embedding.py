@@ -15,8 +15,7 @@ from scipy.spatial.distance import cdist
 tf.enable_eager_execution()
 
 # TODO:
-# (1) More data (DeepMoji)
-# (2) CoB Training like word2vec -- predicting context words
+# (1) CoB Training like word2vec -- predicting context words
 
 class EmojiCNN(tf.keras.Model):
     def __init__(self, emoji_img, **kwargs):

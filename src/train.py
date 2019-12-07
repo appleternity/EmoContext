@@ -1,30 +1,53 @@
 from data import load_data
-from model import ConversationLSTM
+from model import ConversationLSTM, ConversationBiLSTM
 import tensorflow as tf
 import tensorflow.contrib.eager as tfe
 import numpy as np
 import os
 from config import *
 from sklearn.metrics import *
-tf.enable_eager_execution()
+import json
+
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+tf.enable_eager_execution(config=config)
 tf.executing_eagerly()
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 # TODO:
-# (1) Evaluation Metric (F1)
+# v (1) Evaluation Metric (F1)
 # (2) Test Data
 # (3) Emoji Embedding
 # (4) Existing Embedding, such as GloVe
-# (5) Bins Training for acceleration
-# (6) Check data (lower?)
+# v (5) Bins Training for acceleration
+# v (6) Check data (lower?)
+# v (7) Weight
+# (8) character-based
 
 def metric(y_true, y_pred):
     return [
         precision_recall_fscore_support(y_true, y_pred, average="micro", labels=[0, 1, 2]),
-        precision_recall_fscore_support(y_true, y_pred, average="micro", labels=[0, 1, 2, 3]),
         precision_recall_fscore_support(y_true, y_pred, average="macro", labels=[0, 1, 2]),
-        precision_recall_fscore_support(y_true, y_pred, average="macro", labels=[0, 1, 2, 3]),
     ]
+
+def my_metric(y_true, y_pred, eps=0.00000000001):
+    matrix = np.zeros([4, 4], dtype=np.int32)
+    # build confusion matrix
+    for t, p in zip(y_true, y_pred): 
+        matrix[p, t] += 1
+    print(matrix)
+
+    # compute tp, fp, fn
+    tp = np.sum(matrix[i, i] for i in range(0, 3))
+    fp = np.sum(matrix) - tp - np.sum(matrix[-1, :])
+    fn = np.sum(matrix) - tp - np.sum(matrix[:, -1])
+
+    # compute scores
+    precision = tp / (tp+fp+eps)
+    recall = tp / (tp+fn+eps)
+    f1 = 2 * precision * recall / (precision + recall + eps)
+    
+    return precision, recall, f1
 
 class EarlyStop:
     def __init__(self, mode="max", history=5):
@@ -70,27 +93,33 @@ class MyCount:
 class Trainer:
     def __init__(self):
         #self.learning_rate = 0.0003
-        self.learning_rate = 0.0001
+        self.learning_rate = 0.001
         #self.learning_rate = 0.05
         #self.epoch_num = 1000
-        self.epoch_num = 100
+        self.epoch_num = 40
         self.output_size = 4
-        self.history_num = 5
+        self.history_num = 40
 
         # model hyper-parameter
-        self.batch_size = 512
+        self.batch_size = 64
         self.hidden_size = 128
-        self.stack_num = 5
+        self.stack_num = 3
         self.input_keep_rate = 0.80
         self.output_keep_rate = 0.80
         self.state_keep_rate = 0.80
+        self.weight = 0.3
 
         self.residual = False
+        self.character = True
+        self.bidirectional = True
 
         self.optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate)
         self.loss = lambda y_pred, y_true: tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y_pred, labels=y_true))
 
     def save_history(self, filename, history):
+        history["train_metric"] = np.array(history["train_metric"]).tolist()
+        history["valid_metric"] = np.array(history["valid_metric"]).tolist()
+
         with open(os.path.join(history_path, filename), 'w', encoding='utf-8') as outfile:
             json.dump(history, outfile, indent=4)
 
@@ -105,11 +134,12 @@ class Trainer:
             ).batch(batch_size=self.batch_size)
         return train_data
 
-    def process_data(x, y, word_dictionary):
-        x = self.turn_index(x, word_mapping)
+    def process_data(self, x, y, word_dictionary):
+        x = self.turn_index(x, word_dictionary)
         max_len = max(len(row) for x in x for row in x)
         x = self.padding(x, max_len)
         y = self.vectorize(y)
+        return x, y
 
     def accuracy_function(self, yhat, true_y):
         correct_prediction = tf.equal(tf.argmax(yhat, 1), tf.argmax(true_y, 1))
@@ -118,7 +148,8 @@ class Trainer:
 
     def train(self):
         ## set model parameter
-        model = ConversationLSTM(
+        ModelType = ConversationLSTM if self.bidirectional is False else ConversationBiLSTM
+        model = ModelType(
             hidden_size = self.hidden_size,
             batch_size = self.batch_size,
             stack_num = self.stack_num,
@@ -126,11 +157,12 @@ class Trainer:
             output_keep_rate = self.output_keep_rate,
             state_keep_rate = self.state_keep_rate,
             residual = self.residual,
+            weight = self.weight,
         )
 
-        model_name = "lstm_layer{}_dim{}".format(
-                self.stack_num, self.hidden_size,
-                "" if self.residual is False else "_res"
+        model_name = "{}lstm_layer{}_dim{}_w{}_f1".format(
+                "bi" if self.bidirectional else "",
+                self.stack_num, self.hidden_size, self.weight
             )
         try:
             os.mkdir(os.path.join(model_path, model_name))
@@ -138,40 +170,48 @@ class Trainer:
             pass
 
         ## build data
-        data = load_data("train.txt") 
-        x_train = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
+        data = load_data("train.txt")
+        if self.character:
+            x_train = [data["1"], data["2"], data["3"]]
+        else:
+            x_train = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
         y_train = data.label.values
         word_mapping = self.build_dictionary(x_train)
         print("len(word) = {}".format(len(word_mapping)))
 
-        data = load_data("valid.txt")
-        x_valid = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
+        data = load_data("dev.txt")
+        if self.character:
+            x_valid = [data["1"], data["2"], data["3"]]
+        else:
+            x_valid = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
+            
         y_valid = data.label.values
         
-        data = load_data("test.txt")
-        x_test = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
-        y_test = data.label.values
+        #data = load_data("test.txt")
+        #x_test = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
+        #y_test = data.label.values
 
         x_train, y_train = self.process_data(x_train, y_train, word_mapping)
         x_valid, y_valid = self.process_data(x_valid, y_valid, word_mapping)
-        x_test, y_test   = self.process_data(x_test, y_test, word_mapping)
+        #x_test, y_test   = self.process_data(x_test, y_test, word_mapping)
 
         ## print data shape
         for setting, (x, y) in zip(
             ["train, valid, text"], 
-            [[x_train, y_train], [x_valid, y_valid], [x_test, y_test]]
+            [[x_train, y_train], [x_valid, y_valid]],
+            #[[x_train, y_train], [x_valid, y_valid], [x_test, y_test]],
         ):
             print(setting)
-            print(" x = ", x.shape, " y = ", y.shape)
+            print(" x = ", x[0].shape, " y = ", y.shape)
 
         ## build dataset
-        train_data = tf.data.Dataset.from_tensor_slices(x_train + [y_train])
+        train_data = tf.data.Dataset.from_tensor_slices(tuple(x_train + [y_train]))
         valid_data = tf.data.Dataset.from_tensor_slices(
-                x_valid + [y_valid]
+                tuple(x_valid + [y_valid])
             ).batch(batch_size=self.batch_size)
-        test_data = tf.data.Dataset.from_tensor_slices(
-                x_test
-            ).batch(batch_size=self.batch_size)
+        #test_data = tf.data.Dataset.from_tensor_slices(
+        #        x_test
+        #    ).batch(batch_size=self.batch_size)
 
         total_steps = int(x_train[0].shape[0] / self.batch_size)
 
@@ -179,25 +219,32 @@ class Trainer:
         history = {
             "train":[],
             "validation":[],
+            "train_metric": [],
+            "valid_metric": [],
             "epoch":[],
         }
         prediction_history = []
         stopper = EarlyStop(mode="max", history=self.history_num)
         for epoch in range(self.epoch_num):
             model.train()
-            current_train_data = train_data.shuffle(x_train.shape[0]).batch(batch_size=self.batch_size)
+            current_train_data = train_data.shuffle(x_train[0].shape[0]).batch(batch_size=self.batch_size)
             loss_array = []
             acc_array = []
+            y_true = []
+            y_pred = []
+            print()
             for step, (x1, x2, x3, y) in enumerate(tfe.Iterator(current_train_data), 1):
                 with tf.GradientTape() as tape:
                     predicted = model(x1, x2, x3)
-                    current_loss = self.loss(predicted, y)
+                    current_loss = model.loss(y_pred=predicted, y_true=y, weights=True)
                     grads = tape.gradient(current_loss, model.variables)
                     self.optimizer.apply_gradients(zip(grads, model.variables))
                     current_acc = self.accuracy_function(predicted, y)
 
                 loss_array.append(current_loss.numpy())
                 acc_array.append(current_acc.numpy())
+                y_true.extend(tf.argmax(y, axis=1).numpy().tolist())
+                y_pred.extend(tf.argmax(predicted, axis=1).numpy().tolist())
 
                 if step % 1 == 0:
                     loss = round(np.hstack(loss_array).mean(), 5)
@@ -206,25 +253,43 @@ class Trainer:
 
             loss = round(np.hstack(loss_array).mean(), 5)
             acc = round(np.hstack(acc_array).mean(), 5)
-            history["train"].append(acc)
+            res = metric(y_true, y_pred)
+            res = [float(res[0][0]), float(res[0][1]), float(res[0][2]), float(res[1][0]), float(res[1][1]), float(res[1][2])]
+            print("\nMicro: p = {:.4f} r = {:.4f} f = {:.4f} | Macro: p = {:.4f} r = {:.4f} f = {:.4f}".format(*res))
+            #my_res = my_metric(y_true, y_pred)
+            #print(my_res)
+            history["train"].append(float(acc))
             history["epoch"].append(epoch)
+            history["train_metric"].append(res)
 
             # validation
             loss_array = []
             acc_array = []
+            y_true = []
+            y_pred = []
             model.eval()
             for step, (x1, x2, x3, y) in enumerate(tfe.Iterator(valid_data), 1):
                 predicted = model(x1, x2, x3)
-                current_loss = self.loss(predicted, y)
+                current_loss = model.loss(y_pred=predicted, y_true=y, weights=True)
                 current_acc = self.accuracy_function(predicted, y)
 
                 loss_array.append(current_loss.numpy())
                 acc_array.append(current_acc.numpy())
+                y_true.extend(tf.argmax(y, axis=1).numpy().tolist())
+                y_pred.extend(tf.argmax(predicted, axis=1).numpy().tolist())
 
             loss = round(np.hstack(loss_array).mean(), 5)
             acc = round(np.hstack(acc_array).mean(), 5)
-            history["validation"].append(acc)
+            res = metric(y_true, y_pred)
+            res = [float(res[0][0]), float(res[0][1]), float(res[0][2]), float(res[1][0]), float(res[1][1]), float(res[1][2])]
+            history["validation"].append(float(acc))
+            history["valid_metric"].append(res)
             print("\nValid loss={:.5f} acc={:.5f}".format(loss, acc))
+            print("Micro: p = {:.4f} r = {:.4f} f = {:.4f} | Macro: p = {:.4f} r = {:.4f} f = {:.4f}".format(*res))
+            #my_res = my_metric(y_true, y_pred)
+            #print(my_res)
+
+            self.save_history(model_name + ".json", history)
 
             # check early stopping
             if stopper.check(acc):
@@ -244,25 +309,21 @@ class Trainer:
             global_step=epoch,
         )
         
-        """
         # output prediction history
-        prediction_history = np.vstack(prediction_history)
-        with open(os.path.join(prediction_history_path, model_name+".pkl"), 'wb') as outfile:
-            pickle.dump(prediction_history, outfile)
+        self.save_history(model_name + ".json", history)
+        #prediction_history = np.vstack(prediction_history)
+        #with open(os.path.join(prediction_history_path, model_name+".pkl"), 'wb') as outfile:
+        #    pickle.dump(prediction_history, outfile)
 
         ## test
         model.eval()
         result_pred = []
-        for step, (x, shop_ids, seq_len, month_seq, year_seq) in enumerate(tfe.Iterator(test_data), 1):
-            if self.year:
-                predicted, predicted_next_list = model(shop_ids, x, seq_len, month_seq, year_seq)
-            else:
-                predicted, predicted_next_list = model(shop_ids, x, seq_len, month_seq)
-            result_pred.append(predicted.numpy())
-        y_pred = np.vstack(result_pred)[:, -1, :]
-        save_result(model_name + ".pkl", y_pred)
-        self.save_history(model_name + ".json", history)
-        """
+        for step, (x1, x2, x3) in enumerate(tfe.Iterator(test_data), 1):
+            predicted = model(x1, x2, x3)
+            pred_res = tf.argmax(predicted)
+            result_pred.append(pred_res)
+        result_pred = np.hstack(result_pred)
+        save_result(model_name + ".pkl", result_red)
 
     def build_dictionary(self, data_list, min_freq=5, verbose=True):
         # 0: <PAD>, 1: <UNK>
