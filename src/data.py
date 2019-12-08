@@ -6,6 +6,7 @@ import pickle
 from config import *
 from nltk import word_tokenize
 from collections import Counter
+import csv
 
 # TODO: 
 # (1) twitter tokenizer
@@ -54,6 +55,21 @@ def load_test_data(filename, dir_path=data_path, redo=False):
 
     return data
 
+def load_twitter_data():
+    filename = "/apple_data/workspace/emoContext/training.1600000.processed.noemoticon.csv"
+    #data = pd.read_csv(filename, header=None, encoding='ascii')
+    #print(data.columns)
+
+    with open(filename, 'r', encoding='utf-8', errors="ignore") as infile:
+        reader = csv.reader(infile)
+        x = []
+        y = []
+        for row in reader:
+            y.append(int(row[0]))
+            x.append(row[-1])
+
+    return x, y
+
 def word_count(filename, dir_path=data_path):
     target_file = os.path.join(dir_path, "processed_"+filename)
     
@@ -77,6 +93,9 @@ def word_count(filename, dir_path=data_path):
     print(token_num)
 
 def main():
+    load_twitter_data()
+    quit()
+
     data = load_data("train.txt", redo=True)
     #print(data)
 

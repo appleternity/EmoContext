@@ -1,5 +1,5 @@
 from data import load_data
-from model import ConversationLSTM, ConversationBiLSTM
+from model import ConversationLSTM, ConversationBiLSTM, ConversationCNNLSTM
 import tensorflow as tf
 import tensorflow.contrib.eager as tfe
 import numpy as np
@@ -102,7 +102,7 @@ class Trainer:
 
         # model hyper-parameter
         self.batch_size = 64
-        self.hidden_size = 128
+        self.hidden_size = 300
         self.stack_num = 3
         self.input_keep_rate = 0.80
         self.output_keep_rate = 0.80
@@ -148,7 +148,8 @@ class Trainer:
 
     def train(self):
         ## set model parameter
-        ModelType = ConversationLSTM if self.bidirectional is False else ConversationBiLSTM
+        #ModelType = ConversationLSTM if self.bidirectional is False else ConversationBiLSTM
+        ModelType = ConversationCNNLSTM
         model = ModelType(
             hidden_size = self.hidden_size,
             batch_size = self.batch_size,
