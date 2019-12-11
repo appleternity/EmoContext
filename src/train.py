@@ -1,4 +1,4 @@
-from data import load_data
+from data import load_data, load_twitter_data
 from model import ConversationLSTM, ConversationBiLSTM, ConversationCNNLSTM
 import tensorflow as tf
 import tensorflow.contrib.eager as tfe
@@ -101,9 +101,10 @@ class Trainer:
         self.history_num = 40
 
         # model hyper-parameter
+        self.stack_num = 1
+        self.cnn_num = 3
         self.batch_size = 64
         self.hidden_size = 300
-        self.stack_num = 3
         self.input_keep_rate = 0.80
         self.output_keep_rate = 0.80
         self.state_keep_rate = 0.80
@@ -111,7 +112,14 @@ class Trainer:
 
         self.residual = False
         self.character = True
-        self.bidirectional = True
+        #self.bidirectional = True
+        self.model_type = "cnn-lstm" # lstm / bi-lstm / cnn-lstm
+        self.model_list = {
+            "lstm": ConversationLSTM,
+            "bi-lstm": ConversationBiLSTM,
+            "cnn-lstm": ConversationCNNLSTM
+        }
+        self.outside_data = False
 
         self.optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate)
         self.loss = lambda y_pred, y_true: tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y_pred, labels=y_true))
@@ -148,23 +156,11 @@ class Trainer:
 
     def train(self):
         ## set model parameter
-        #ModelType = ConversationLSTM if self.bidirectional is False else ConversationBiLSTM
-        ModelType = ConversationCNNLSTM
-        model = ModelType(
-            hidden_size = self.hidden_size,
-            batch_size = self.batch_size,
-            stack_num = self.stack_num,
-            input_keep_rate = self.input_keep_rate,
-            output_keep_rate = self.output_keep_rate,
-            state_keep_rate = self.state_keep_rate,
-            residual = self.residual,
-            weight = self.weight,
-        )
-
-        model_name = "{}lstm_layer{}_dim{}_w{}_f1".format(
-                "bi" if self.bidirectional else "",
-                self.stack_num, self.hidden_size, self.weight
+        model_name = "{}lstm_layer{}_dim{}_w{}".format(
+                self.model_type, self.stack_num, self.hidden_size, self.weight
             )
+        if self.model_type == "cnn-lstm":
+            model_name += "_cnn{}".format(self.cnn_num)
         try:
             os.mkdir(os.path.join(model_path, model_name))
         except FileExistsError:
@@ -214,7 +210,42 @@ class Trainer:
         #        x_test
         #    ).batch(batch_size=self.batch_size)
 
+        ############################
+        # Twitter data
+        x_twitter, y_twitter = load_twitter_data(num=500000) 
+        
+        unk_index = word_mapping["<UNK>"]
+        x_twitter = [[word_mapping.get(w, unk_index) for w in row] for row in x_twitter]
+        max_len = 150
+        new_data = np.zeros((len(x_twitter), max_len), dtype=np.int32)
+        for i, row in enumerate(x_twitter):
+            length = min(len(row), max_len)
+            new_data[i, max_len-length:] = row[:length]
+        y_twitter = self.vectorize(y_twitter)
+        print(new_data)
+        twitter_data = tf.data.Dataset.from_tensor_slices((new_data, y_twitter))
+        twitter_steps = int(new_data.shape[0] / self.batch_size)
+        print(twitter_steps)
+
         total_steps = int(x_train[0].shape[0] / self.batch_size)
+
+        ModelType = self.model_list[self.model_type]
+        model = ModelType(
+            hidden_size = self.hidden_size,
+            batch_size = self.batch_size,
+            stack_num = self.stack_num,
+            input_keep_rate = self.input_keep_rate,
+            output_keep_rate = self.output_keep_rate,
+            state_keep_rate = self.state_keep_rate,
+            residual = self.residual,
+            weight = self.weight,
+            vocab_size = len(word_mapping),
+            cnn_num = self.cnn_num,
+        )
+
+        # save dictionary & important information
+        with open(os.path.join(model_path, model_name, "info.json"), 'w', encoding='utf-8')  as outfile:
+            json.dump(word_mapping, outfile, indent=4)
 
         ## train
         history = {
@@ -228,12 +259,36 @@ class Trainer:
         stopper = EarlyStop(mode="max", history=self.history_num)
         for epoch in range(self.epoch_num):
             model.train()
+            
+            if self.outside_data and epoch % 3 == 0:
+                # twitter
+                loss_array = []
+                acc_array = []
+                current_twitter_data = twitter_data.shuffle(x_train[0].shape[0]).batch(batch_size=self.batch_size)
+                print("\nTraining Embedding")
+                for step, (x, y) in enumerate(tfe.Iterator(current_twitter_data)):
+                    with tf.GradientTape() as tape:
+                        predicted = model.encode(x)
+                        current_loss = model.loss(y_pred=predicted, y_true=y, weights=False)
+                        grads = tape.gradient(current_loss, model.variables)
+                        self.optimizer.apply_gradients(zip(grads, model.variables))
+                        current_acc = self.accuracy_function(predicted, y)
+
+                    loss_array.append(current_loss.numpy())
+                    acc_array.append(current_acc.numpy())
+
+                    if step % 1 == 0:
+                        loss = round(np.hstack(loss_array).mean(), 5)
+                        acc = round(np.hstack(acc_array).mean(), 5)
+                        print("\x1b[2K\rEpoch:{} [{}%] loss={:.5f} acc={:.5f}".format(epoch, round(step/twitter_steps*100, 2), loss, acc), end="")
+
+            # normal data
             current_train_data = train_data.shuffle(x_train[0].shape[0]).batch(batch_size=self.batch_size)
             loss_array = []
             acc_array = []
             y_true = []
             y_pred = []
-            print()
+            print("\nEmoContext Training")
             for step, (x1, x2, x3, y) in enumerate(tfe.Iterator(current_train_data), 1):
                 with tf.GradientTape() as tape:
                     predicted = model(x1, x2, x3)
@@ -298,7 +353,7 @@ class Trainer:
                 break
 
             # save model
-            if epoch % 10 == 0:
+            if epoch % 1 == 0:
                 tfe.Saver(model.variables).save(
                     os.path.join(model_path, model_name, "checkpoint"),
                     global_step=epoch,

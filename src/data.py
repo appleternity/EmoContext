@@ -55,7 +55,7 @@ def load_test_data(filename, dir_path=data_path, redo=False):
 
     return data
 
-def load_twitter_data():
+def load_twitter_data(num=None):
     filename = "/apple_data/workspace/emoContext/training.1600000.processed.noemoticon.csv"
     #data = pd.read_csv(filename, header=None, encoding='ascii')
     #print(data.columns)
@@ -67,6 +67,21 @@ def load_twitter_data():
         for row in reader:
             y.append(int(row[0]))
             x.append(row[-1])
+        y = [yy if yy!=4 else 1 for yy in y]
+
+    # sample
+    if num is not None:
+        index = np.random.permutation(len(x))
+        x = [x[i] for i in index[:num]]
+        y = [y[i] for i in index[:num]]
+
+    # x
+    length = np.array([len(xx) for xx in x])
+    print("twitter length", length.mean(), length.std(), np.max(length), np.min(length))
+
+    # y
+    y_uni = np.unique(y)
+    print("# uni y", y_uni.shape)
 
     return x, y
 

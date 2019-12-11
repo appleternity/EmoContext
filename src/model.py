@@ -336,11 +336,12 @@ class ConversationCNNLSTM(tf.keras.Model):
         self.input_keep_rate  = kwargs.get("input_keep_rate", 0.8)
         self.output_keep_rate = kwargs.get("output_keep_rate", 0.8)
         self.state_keep_rate  = kwargs.get("state_keep_rate", 0.8)
-        self.stack_num        = kwargs.get("stack_num", 3)
+        self.stack_num        = kwargs.get("stack_num", 2)
         self.vocab_size       = kwargs.get("vocab_size", 1024)
         self.word_embedding   = kwargs.get("word_embedding", None)
         self.train_embedding  = kwargs.get("train_embedding", True)
         self.residual         = kwargs.get("residual", False)
+        self.cnn_num          = kwargs.get("cnn_num", 2)
         self.weight           = kwargs.get("weight", 0.1)
         self.f1_weight        = tf.convert_to_tensor([1.0, 1.0, 1.0, self.weight], dtype=tf.float32)
 
@@ -402,21 +403,31 @@ class ConversationCNNLSTM(tf.keras.Model):
         self.output_dense_3 = tf.keras.layers.Dense(self.size_output, name="output_3")
         
         # cnn part
-        tf.kernel_2 = tfe.Variable(tf.random.normal([2, self.size_hidden, self.size_hidden//4]), "kernel_2")
-        tf.kernel_3 = tfe.Variable(tf.random.normal([3, self.size_hidden, self.size_hidden//4]), "kernel_3")
-        tf.kernel_4 = tfe.Variable(tf.random.normal([4, self.size_hidden, self.size_hidden//4]), "kernel_4")
-        tf.kernel_5 = tfe.Variable(tf.random.normal([5, self.size_hidden, self.size_hidden//4]), "kernel_5")
+        self.kernels = [
+            [
+                tfe.Variable(tf.random.normal([n, self.size_hidden, self.size_hidden//4]), name="kernel_{}_{}".format(i, n))
+                for n in range(2, 6)
+            ]
+            for i in range(0, self.cnn_num)
+        ]
+        self.last_cnn_num = len(self.kernels) - 1
 
         # other data
-        self.output_dense_other_1 = tf.keras.layers.Dense(4, name="output_other")
+        self.output_dense_other_1 = tf.keras.layers.Dense(2, name="output_other")
 
     def encode_with_cnn(self, x):
-        x2 = tf.nn.conv1d(x, tf.kernel_2, stride=2, padding="SAME")
-        x3 = tf.nn.conv1d(x, tf.kernel_3, stride=2, padding="SAME")
-        x4 = tf.nn.conv1d(x, tf.kernel_4, stride=2, padding="SAME")
-        x5 = tf.nn.conv1d(x, tf.kernel_5, stride=2, padding="SAME")
+        prev_x = x
+        for i, kernel_list in enumerate(self.kernels):
+            stride = 2 if i == self.last_cnn_num else 1
+            x = tf.concat([
+                tf.nn.conv1d(x, kernel, stride=stride, padding="SAME")
+                for kernel in kernel_list
+            ], axis=2)
+            if i != self.last_cnn_num:
+                x = prev_x + x
+            x = tf.nn.selu(x)
 
-        return tf.concat([x2, x3, x4, x5], axis=2)
+        return x
 
     def call(self, text_1, text_2, text_3):
         # cut length
