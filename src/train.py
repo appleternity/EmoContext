@@ -96,24 +96,27 @@ class Trainer:
         self.learning_rate = 0.001
         #self.learning_rate = 0.05
         #self.epoch_num = 1000
-        self.epoch_num = 40
+        self.epoch_num = 200
         self.output_size = 4
         self.history_num = 40
 
         # model hyper-parameter
-        self.stack_num = 1
-        self.cnn_num = 3
-        self.batch_size = 64
+        self.stack_num = 4
+        self.cnn_num = 1
+        self.batch_size = 128
         self.hidden_size = 300
         self.input_keep_rate = 0.80
         self.output_keep_rate = 0.80
         self.state_keep_rate = 0.80
-        self.weight = 0.3
+        self.weight = 0.1
+        self.max_len = 20
 
         self.residual = False
-        self.character = True
+        self.character = False
+        self.sentence_piece = True
         #self.bidirectional = True
-        self.model_type = "cnn-lstm" # lstm / bi-lstm / cnn-lstm
+        #self.model_type = "cnn-lstm" # lstm / bi-lstm / cnn-lstm
+        self.model_type = "bi-lstm" # lstm / bi-lstm / cnn-lstm
         self.model_list = {
             "lstm": ConversationLSTM,
             "bi-lstm": ConversationBiLSTM,
@@ -142,9 +145,10 @@ class Trainer:
             ).batch(batch_size=self.batch_size)
         return train_data
 
-    def process_data(self, x, y, word_dictionary):
+    def process_data(self, x, y, word_dictionary, max_len=None):
         x = self.turn_index(x, word_dictionary)
-        max_len = max(len(row) for x in x for row in x)
+        if max_len is None:
+            max_len = max(len(row) for x in x for row in x)
         x = self.padding(x, max_len)
         y = self.vectorize(y)
         return x, y
@@ -156,11 +160,15 @@ class Trainer:
 
     def train(self):
         ## set model parameter
-        model_name = "{}lstm_layer{}_dim{}_w{}".format(
-                self.model_type, self.stack_num, self.hidden_size, self.weight
+        model_name = "{}lstm_layer{}_dim{}_w{}_max{}_0.1".format(
+                self.model_type, self.stack_num, self.hidden_size, self.weight, self.max_len
             )
         if self.model_type == "cnn-lstm":
             model_name += "_cnn{}".format(self.cnn_num)
+        if self.outside_data:
+            model_name += "_tw"
+        if self.sentence_piece:
+            model_name += "_sp"
         try:
             os.mkdir(os.path.join(model_path, model_name))
         except FileExistsError:
@@ -170,6 +178,8 @@ class Trainer:
         data = load_data("train.txt")
         if self.character:
             x_train = [data["1"], data["2"], data["3"]]
+        elif self.sentence_piece:
+            x_train = [data["1_m_2000"], data["2_m_2000"], data["3_m_2000"]]
         else:
             x_train = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
         y_train = data.label.values
@@ -179,6 +189,8 @@ class Trainer:
         data = load_data("dev.txt")
         if self.character:
             x_valid = [data["1"], data["2"], data["3"]]
+        elif self.sentence_piece:
+            x_valid = [data["1_m_2000"], data["2_m_2000"], data["3_m_2000"]]
         else:
             x_valid = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
             
@@ -188,8 +200,8 @@ class Trainer:
         #x_test = [data["1_tokenized"], data["2_tokenized"], data["3_tokenized"]]
         #y_test = data.label.values
 
-        x_train, y_train = self.process_data(x_train, y_train, word_mapping)
-        x_valid, y_valid = self.process_data(x_valid, y_valid, word_mapping)
+        x_train, y_train = self.process_data(x_train, y_train, word_mapping, self.max_len)
+        x_valid, y_valid = self.process_data(x_valid, y_valid, word_mapping, self.max_len)
         #x_test, y_test   = self.process_data(x_test, y_test, word_mapping)
 
         ## print data shape
@@ -212,11 +224,10 @@ class Trainer:
 
         ############################
         # Twitter data
-        x_twitter, y_twitter = load_twitter_data(num=500000) 
-        
+        x_twitter, y_twitter = load_twitter_data(num=1600000) 
         unk_index = word_mapping["<UNK>"]
         x_twitter = [[word_mapping.get(w, unk_index) for w in row] for row in x_twitter]
-        max_len = 150
+        max_len = self.max_len
         new_data = np.zeros((len(x_twitter), max_len), dtype=np.int32)
         for i, row in enumerate(x_twitter):
             length = min(len(row), max_len)
@@ -259,7 +270,8 @@ class Trainer:
         stopper = EarlyStop(mode="max", history=self.history_num)
         for epoch in range(self.epoch_num):
             model.train()
-            
+           
+            """
             if self.outside_data and epoch % 3 == 0:
                 # twitter
                 loss_array = []
@@ -281,9 +293,13 @@ class Trainer:
                         loss = round(np.hstack(loss_array).mean(), 5)
                         acc = round(np.hstack(acc_array).mean(), 5)
                         print("\x1b[2K\rEpoch:{} [{}%] loss={:.5f} acc={:.5f}".format(epoch, round(step/twitter_steps*100, 2), loss, acc), end="")
-
+            """
             # normal data
             current_train_data = train_data.shuffle(x_train[0].shape[0]).batch(batch_size=self.batch_size)
+            twitter_index = np.random.permutation(160000)
+            current_twitter_data = tf.data.Dataset.from_tensor_slices(
+                    (new_data[twitter_index, :], y_twitter[twitter_index, :])
+                ).shuffle(5000).batch(batch_size=self.batch_size)
             loss_array = []
             acc_array = []
             y_true = []
@@ -291,8 +307,22 @@ class Trainer:
             print("\nEmoContext Training")
             for step, (x1, x2, x3, y) in enumerate(tfe.Iterator(current_train_data), 1):
                 with tf.GradientTape() as tape:
+                    if self.outside_data:
+                        outside_loss = []
+                        for i in range(10):
+                            x = current_twitter_data.prefetch(1)
+                            print(x[0])
+                            print(x[1])
+                            p = model.encode(x)
+                            l = model.loss(y_pred=predicted, y_true=y, weights=False)
+                            outside_loss.append(l)
+                        outside_loss = tf.reduce_mean(outside_loss)
+
                     predicted = model(x1, x2, x3)
                     current_loss = model.loss(y_pred=predicted, y_true=y, weights=True)
+                    if self.outside_data:
+                        current_loss = current_loss + 0.1*outside_loss
+
                     grads = tape.gradient(current_loss, model.variables)
                     self.optimizer.apply_gradients(zip(grads, model.variables))
                     current_acc = self.accuracy_function(predicted, y)

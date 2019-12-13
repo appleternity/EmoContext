@@ -253,7 +253,25 @@ class ConversationBiLSTM(tf.keras.Model):
         self.output_dense_1 = tf.keras.layers.Dense(self.size_hidden*2, name="output_1")
         self.output_dense_2 = tf.keras.layers.Dense(self.size_hidden//5, name="output_2")
         self.output_dense_3 = tf.keras.layers.Dense(self.size_output, name="output_3")
-            
+        
+        # other data
+        self.output_dense_other_1 = tf.keras.layers.Dense(2, name="output_other")
+    
+    def encode(self, text):
+        s = tf.reduce_sum(text, axis=0)
+        text = tf.boolean_mask(text, s>0, axis=1)
+        embedding = tf.nn.embedding_lookup(self.word_embedding, text)
+        if self.is_training:
+            ((rnn_fw, rnn_bw), _) = tf.nn.bidirectional_dynamic_rnn(self.dropout_cell, self.dropout_cell_back, embedding, dtype=tf.float32)
+        else:
+            ((rnn_fw, rnn_bw), _) = tf.nn.bidirectional_dynamic_rnn(self.cell, self.cell_back, embedding, dtype=tf.float32)
+        
+        representation = tf.concat([
+            rnn_fw[:, -1, :], rnn_bw[:, 0, :], 
+        ], axis=1)
+        representation = tf.nn.selu(self.output_dense_other_1(representation))
+        return representation 
+
     def call(self, text_1, text_2, text_3):
         # cut length
         s = tf.reduce_sum(text_1, axis=0)

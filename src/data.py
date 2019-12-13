@@ -7,6 +7,8 @@ from config import *
 from nltk import word_tokenize
 from collections import Counter
 import csv
+import sentencepiece as spm
+import re
 
 # TODO: 
 # (1) twitter tokenizer
@@ -17,6 +19,10 @@ def load_data(filename, dir_path=data_path, redo=False):
         with open(target_file, 'rb') as infile:
             data = pickle.load(infile)
         return data
+    
+    sp = spm.SentencePieceProcessor()
+    sp_name = "m_2000"
+    sp.Load(sp_name+".model")
 
     with open(os.path.join(dir_path, filename), 'r', encoding='utf-8') as infile:
         data = [line.strip().split("\t") for line in infile]
@@ -28,7 +34,12 @@ def load_data(filename, dir_path=data_path, redo=False):
         data["1_tokenized"] = data["1"].apply(my_tokenize)
         data["2_tokenized"] = data["2"].apply(my_tokenize)
         data["3_tokenized"] = data["3"].apply(my_tokenize)
+        
+        # sentence piece
+        for x in ["1", "2", "3"]:
+            data["{}_{}".format(x, sp_name)] = data["1"].apply(sp.EncodeAsPieces)
 
+    print(data.columns)
     with open(target_file, 'wb') as outfile:
         pickle.dump(data, outfile)
 
@@ -40,6 +51,10 @@ def load_test_data(filename, dir_path=data_path, redo=False):
         with open(target_file, 'rb') as infile:
             data = pickle.load(infile)
         return data
+    
+    sp = spm.SentencePieceProcessor()
+    sp_name = "m_2000"
+    sp.Load(sp_name+".model")
 
     with open(os.path.join(dir_path, filename.replace(".txt", "withoutlabels.txt")), 'r', encoding='utf-8') as infile:
         data = [line.strip().split("\t") for line in infile]
@@ -49,6 +64,10 @@ def load_test_data(filename, dir_path=data_path, redo=False):
         data["1_tokenized"] = data["1"].apply(my_tokenize)
         data["2_tokenized"] = data["2"].apply(my_tokenize)
         data["3_tokenized"] = data["3"].apply(my_tokenize)
+        
+        # sentence piece
+        for x in ["1", "2", "3"]:
+            data["{}_{}".format(x, sp_name)] = data["1"].apply(sp.EncodeAsPieces)
 
     with open(target_file, 'wb') as outfile:
         pickle.dump(data, outfile)
@@ -74,6 +93,11 @@ def load_twitter_data(num=None):
         index = np.random.permutation(len(x))
         x = [x[i] for i in index[:num]]
         y = [y[i] for i in index[:num]]
+    
+    sp = spm.SentencePieceProcessor()
+    sp_name = "m_2000"
+    sp.Load(sp_name+".model")
+    x = [sp.EncodeAsPieces(xx) for xx in x]
 
     # x
     length = np.array([len(xx) for xx in x])
@@ -107,15 +131,62 @@ def word_count(filename, dir_path=data_path):
     ])
     print(token_num)
 
+def train_sentence_piece():
+    # extract data
+    """
+    train = load_data("train.txt")
+    valid = load_data("dev.txt")
+    test = load_data("test.txt")
+    twitter = load_twitter_data()
+    pattern = re.compile(r"@[\w\d]+")
+
+    with open(os.path.join(data_path, "all_text.txt"), 'w', encoding='utf-8') as outfile:
+        for data in [train, valid, test]:
+            for x in ["1", "2", "3"]:
+                for text in data[x]:
+                    outfile.write(text + "\n")
+
+        for text in twitter[0]:
+            text = pattern.sub("", text).strip()
+            outfile.write(text + "\n")
+    """
+
+    # run sentence piece
+    spm.SentencePieceTrainer.Train('--input={} --model_prefix=m_2000 --vocab_size=2000'.format(
+        os.path.join(data_path, "all_text.txt")
+    ))
+
+def test_sentence_piece():
+    sp = spm.SentencePieceProcessor()
+    sp.Load("m_2000.model")
+
+    sentences = [
+        "This is a test",
+        "How r u?",
+    ]
+    
+    for sent in sentences:
+        r = sp.EncodeAsPieces(sent)
+        print(r)
+
 def main():
+    #train_sentence_piece()
+    """
+    test_sentence_piece()
+    quit()
+
+
     load_twitter_data()
     quit()
+    """
 
     data = load_data("train.txt", redo=True)
     #print(data)
 
     data = load_data("dev.txt", redo=True)
     #print(data)
+
+    data = load_test_data("test.txt", redo=True)
 
     word_count("train.txt")
 

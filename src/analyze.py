@@ -6,8 +6,9 @@ import numpy as np
 
 def word_distribution():
     # load data
-    get_data = lambda d: [d["1"], d["2"], d["3"]] # character
+    #get_data = lambda d: [d["1"], d["2"], d["3"]] # character
     #get_data = lambda d: [d["1_tokenized"], d["2_tokenized"], d["3_tokenized"]] # word
+    get_data = lambda d: [d["1_m_2000"], d["2_m_2000"], d["3_m_2000"]] # word
     
     data = load_data("train.txt")
     x_train = get_data(data)
@@ -66,7 +67,8 @@ def word_distribution():
 def length_analyze():
     # load data
     #get_data = lambda d: [d["1"], d["2"], d["3"]] # character
-    get_data = lambda d: [d["1_tokenized"], d["2_tokenized"], d["3_tokenized"]] # word
+    #get_data = lambda d: [d["1_tokenized"], d["2_tokenized"], d["3_tokenized"]] # word
+    get_data = lambda d: [d["1_m_2000"], d["2_m_2000"], d["3_m_2000"]] # word
     
     data = load_data("train.txt")
     x_train = get_data(data)
@@ -87,10 +89,12 @@ def length_analyze():
         print("length min", np.min(length))
         print("length mean", length.mean())
         print("length std", length.std())
+        print("length median", np.median(length))
+        print("length percentile", np.percentile(length, 75))
 
 def main():
-    #word_distribution()
-    length_analyze()
+    word_distribution()
+    #length_analyze()
 
 if __name__ == "__main__":
     main()
