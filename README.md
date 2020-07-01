@@ -36,10 +36,6 @@ Incorporated Joint Training as shown in the following diagram.
 
 We used the same encoder to encode the tweets and predict its corresponding sentiment label. Notice that to prevent the model from distracting too much, we also set up a weight 0.1 for the loss of joint training part.
 
-Increase in digitalization of artwork illustrates the importance of
-classification of paintings based on artists, styles and the genre of paintings. Classification methodologies will indeed help the visitors as well as the curators in analyzing and visualizing the paintings in any museum at their own pace. Moreover, finding the
-artist of a painting is a difficult task because most artworks of an artist may have a exclusive painting style and multiple artists can have same styles of paintings.
-
 
 ## Installation and running the code
 
